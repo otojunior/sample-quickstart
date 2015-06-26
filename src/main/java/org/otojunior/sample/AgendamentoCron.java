@@ -1,30 +1,20 @@
 package org.otojunior.sample;
 
 import org.otojunior.sample.job.HelloWorldJob;
+import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
-import org.quartz.ScheduleBuilder;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.terracotta.quartz.wrappers.TriggerFacade;
 
 /**
  * Application Main Class.
  * @author [Author name]
  */
-public class App {
-	/**
-	 * SLF4J Logger.
-	 */
-	private static final Logger LOG = LoggerFactory.getLogger(App.class);
-	
+public class AgendamentoCron {
 	/**
 	 * Application main method.
 	 * @param args Command line arguments.
@@ -38,12 +28,12 @@ public class App {
 		 * 		- SimpleTrigger: Permite definir o tempo de inicio, fim e o intervalo de repetição.
 		 * 		- CronTrigger: Permite definir via expressão UNIX Cron a data de execução do Job.  
 		 */
-		SimpleScheduleBuilder simple = SimpleScheduleBuilder.repeatSecondlyForever(1);
+		CronScheduleBuilder cron = CronScheduleBuilder.cronSchedule("0/5 * * * * ?");
 		
 		Trigger trigger = TriggerBuilder.
 			newTrigger().
 			withIdentity("trigger1").
-			withSchedule(simple).
+			withSchedule(cron).
 			build();
 		
 		/*
