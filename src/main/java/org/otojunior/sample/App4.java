@@ -34,8 +34,8 @@ public class App4 {
 		InputStream in = new URL(url).openStream();
 		try {
 			InputStreamReader reader = new InputStreamReader(in);
-			Dados dados = gson.fromJson(reader, Dados.class);
-			System.out.println(dados);
+			Root arquivoJson = gson.fromJson(reader, Root.class);
+			System.out.println(arquivoJson);
 		} finally {
 			IOUtils.closeQuietly(in);
 		}
@@ -43,18 +43,7 @@ public class App4 {
 	}
 	
 	@SuppressWarnings("unused")
-	private static class Dados {
-		private static class Job {
-			public String name;
-			public String color;
-			
-			@Override
-			public String toString() {
-				return ToStringBuilder.reflectionToString(
-					this, ToStringStyle.SHORT_PREFIX_STYLE);
-			}
-		}
-		
+	private static class Root {
 		public List<Job> jobs;
 		
 		@Override
@@ -67,6 +56,17 @@ public class App4 {
 				b.append(jobstr).append("\n");
 			}
 			return b.toString();
+		}
+		
+		private static class Job {
+			public String name;
+			public String color;
+			
+			@Override
+			public String toString() {
+				return ToStringBuilder.reflectionToString(
+					this, ToStringStyle.SHORT_PREFIX_STYLE);
+			}
 		}
 	}
 }
