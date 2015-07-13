@@ -20,7 +20,7 @@ import com.google.gson.Gson;
  * @author 01456231650
  *
  */
-public class App4 {
+public class GsonSample {
 
 	/**
 	 * @param args
