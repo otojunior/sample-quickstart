@@ -1,9 +1,5 @@
 package org.otojunior.sample;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Base64.Encoder;
 import java.util.Properties;
 
 import javax.naming.NamingEnumeration;
@@ -22,11 +18,11 @@ import org.slf4j.LoggerFactory;
  * Application Main Class.
  * @author [Author name]
  */
-public class SearchLdapUidPass {
+public class SearchLdapUid2 {
 	/**
 	 * SLF4J Logger.
 	 */
-	private static final Logger LOG = LoggerFactory.getLogger(SearchLdapUidPass.class);
+	private static final Logger LOG = LoggerFactory.getLogger(SearchLdapUid2.class);
 	
 	/**
 	 * Application main method.
@@ -34,7 +30,7 @@ public class SearchLdapUidPass {
 	 */
 	public static void main(String[] args) {
 		String base = "ou=users,ou=supde,o=acme,c=br,dc=example,dc=com";
-		String filter = "(uid=otojunior)";
+		String filter = "(&(uid=otojunior)(objectClass=person))";
 		
 		Properties env = new Properties();
         env.put(DirContext.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -61,37 +57,24 @@ public class SearchLdapUidPass {
         	while (ne.hasMore()) {
                 SearchResult sr = (SearchResult) ne.next();
                 LOG.info("Name: " + sr.getName());
+                LOG.info("NameInNamespace: " + sr.getNameInNamespace());
 
                 Attributes attrs = sr.getAttributes();
-                Attribute attPasswd = attrs.get("userPassword");
-                String attValue = new String((byte[])attPasswd.get());
-                LOG.info("Value: " + attValue);
-                
-                LOG.info("Passwords Match? " + attValue.equals(md5AndBase64("teste123")));
+                NamingEnumeration<? extends Attribute> enumAttrs = attrs.getAll();
+                while (enumAttrs.hasMore()) {
+                	Attribute att = enumAttrs.next();
+                	NamingEnumeration<?> all = att.getAll();
+                	while (all.hasMore()) {
+                		Object value = all.next();
+                		LOG.info("[Attribute] " + att.getID() + ": " + value);
+                	}
+                }
             }
             
             dc.close();
         	
         } catch (NamingException e) {
         	LOG.error("Erro de pesquisa LDAP", e);
-        } 
-	}
-	
-	/**
-	 * 
-	 * @param input
-	 * @return
-	 */
-	private static String md5AndBase64(String input) {
-		try {
-			MessageDigest digester = MessageDigest.getInstance("MD5");
-			Encoder encoder = Base64.getEncoder();
-			byte[] md5 = digester.digest(input.getBytes());
-			String output = encoder.encodeToString(md5);
-			return "{md5}"+output;
-		} catch (NoSuchAlgorithmException e) {
-			LOG.error("Erro de digest", e);
-			return null;
-		}
+        }
 	}
 }
