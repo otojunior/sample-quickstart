@@ -40,6 +40,6 @@ public class AppTest {
 	 */
 	@Test
 	public void testMain() {
-		App.main(ArrayUtils.EMPTY_STRING_ARRAY);
+		SearchLdapUid.main(ArrayUtils.EMPTY_STRING_ARRAY);
 	}
 }
