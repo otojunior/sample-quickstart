@@ -92,7 +92,6 @@ public class JNDIDao implements IDao {
         	SearchControls sc = new SearchControls();
         	sc.setSearchScope(SearchControls.ONELEVEL_SCOPE);
         	
-        	
         	String dn = env.getProperty("users.dn");
         	String filter = String.format("(&(uid=%s)(objectClass=person))", uid);
         	

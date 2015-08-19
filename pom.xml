@@ -63,6 +63,33 @@
 	</distributionManagement>
 
 	<dependencies>
+		<!-- Test context dependencies -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>${dependency.version.junit}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.easymock</groupId>
+		    <artifactId>easymock</artifactId>
+		    <version>${dependency.version.easymock}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${dependency.version.powermock}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-easymock</artifactId>
+			<version>${dependency.version.powermock}</version>
+			<scope>test</scope>
+		</dependency>
+	
+		<!-- Runtime context dependencies -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
@@ -94,28 +121,9 @@
 		    <version>${dependency.version.jansi}</version>
 		</dependency>
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>${dependency.version.junit}</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.easymock</groupId>
-		    <artifactId>easymock</artifactId>
-		    <version>${dependency.version.easymock}</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
-			<version>${dependency.version.powermock}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-easymock</artifactId>
-			<version>${dependency.version.powermock}</version>
-			<scope>test</scope>
+		    <groupId>org.apache.directory.api</groupId>
+		    <artifactId>api-all</artifactId>
+		    <version>1.0.0-M30</version>
 		</dependency>
 	</dependencies>
 
