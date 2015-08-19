@@ -31,16 +31,14 @@ public class JNDIDao implements IDao {
 	@Override
 	public String[] findRolesByUid(String uid) {
 		try {
-			Properties env = new Properties();
-			env.load(getClass().getClassLoader().getResourceAsStream("environment.properties"));
-			
+			Properties env = loadProperties();
 			DirContext dc = new InitialDirContext(env);
 			
 			SearchControls sc = new SearchControls();
         	sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
 			
         	String dn = env.getProperty("roles.dn");
-        	String filter = String.format("(&(objectClass=groupOfNames)(member=uid=%s*))", uid);
+        	String filter = String.format("(&(member=uid=%s*)(objectClass=groupOfNames))", uid);
         	
         	if (LOG.isDebugEnabled()) {
         		LOG.debug("dn: " + dn);
@@ -67,14 +65,22 @@ public class JNDIDao implements IDao {
 	}
 
 	/**
+	 * @return
+	 * @throws IOException
+	 */
+	private Properties loadProperties() throws IOException {
+		Properties env = new Properties();
+		env.load(getClass().getClassLoader().getResourceAsStream("environment.properties"));
+		return env;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String[] findUserByUid(String uid) {
 		try {
-			Properties env = new Properties();
-			env.load(getClass().getClassLoader().getResourceAsStream("environment.properties"));
-			
+			Properties env = loadProperties();
 			DirContext dc = new InitialDirContext(env);
         	
         	/* 
