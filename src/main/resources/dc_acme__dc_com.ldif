@@ -615,6 +615,8 @@ jpegPhoto:: /9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1
  DjvX452sS3Umx84BOMHBGKsP4x1qwIhi1G4CADALn0rGUUdUdj//Z
 mail: otojunior@gmail.com
 uid: otojunior
+userPassword:: e3NoYTUxMn1VMTlXNWtSK29Qeno3eHYxT1hCbTBEZnA2N2Y5RkJCbzZONmFJK
+ 3pvNjI1NnowYlE1cnZ4ZnQ4dXZteUFRRm1SdmxNMllUam9OY01WTUJueFpEUUdHUT09
 
 dn: dc=acme,dc=com
 objectclass: top
@@ -638,7 +640,7 @@ dn: cn=employees,ou=groups,dc=acme,dc=com
 objectClass: groupOfNames
 objectClass: top
 cn: employees
-member: 
+member: uid=otojunior,ou=users,dc=acme,dc=com
 
 dn: ou=systemB,ou=system,dc=acme,dc=com
 objectClass: organizationalUnit
