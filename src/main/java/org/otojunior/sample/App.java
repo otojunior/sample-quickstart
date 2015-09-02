@@ -14,9 +14,12 @@ import org.slf4j.LoggerFactory;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * Application Main Class.
@@ -39,7 +42,7 @@ public class App {
 		lst.add(new ImmutablePair<String, String>("dois", "two"));
 		lst.add(new ImmutablePair<String, String>("três", "three"));
 		
-		JRDataSource dataSource = new JRBeanCollectionDataSource(lst);
+		JRDataSource dataSource = new DataSourceTeste(lst);
 
 		// --------------------------------------------
 		
@@ -52,11 +55,11 @@ public class App {
 		parameters.put("titulo", "Relatório de Teste");
 		parameters.put("layoutSubReport", jasperSubReport);
 		
-		String destFileName = "saida.pdf";
 		
 		InputStream inputStreamReport = ClassLoader.getSystemClassLoader().getResourceAsStream("template.jrxml");
 		JasperReport jasperReport = JasperCompileManager.compileReport(inputStreamReport);
 		
-		JasperFillManager.fillReportToFile(jasperReport, destFileName, parameters, dataSource);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+		new JasperViewer(jasperPrint).setVisible(true);
 	}
 }
