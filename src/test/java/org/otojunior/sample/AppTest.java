@@ -1,8 +1,5 @@
 package org.otojunior.sample;
 
-import static org.junit.Assert.*;
-
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +37,6 @@ public class AppTest {
 	 */
 	@Test
 	public void testMain() {
-		App.main(ArrayUtils.EMPTY_STRING_ARRAY);
+		
 	}
 }

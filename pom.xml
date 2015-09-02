@@ -27,7 +27,7 @@
 		<dependency.version.junit>4.11</dependency.version.junit>
 		<dependency.version.easymock>3.2</dependency.version.easymock>
 		<dependency.version.powermock>1.5.6</dependency.version.powermock>
-		<plugin.version.java>1.7</plugin.version.java>
+		<plugin.version.java>1.8</plugin.version.java>
 		<plugin.version.maven-jar-plugin>2.4</plugin.version.maven-jar-plugin>
 		<plugin.version.maven-shade-plugin>2.3</plugin.version.maven-shade-plugin>
 		<plugin.version.maven-compiler-plugin>3.1</plugin.version.maven-compiler-plugin>
@@ -93,6 +93,18 @@
 		    <artifactId>jansi</artifactId>
 		    <version>${dependency.version.jansi}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>4.5.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>jfree</groupId>
+		    <artifactId>jcommon</artifactId>
+		    <version>1.0.0-pre1</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
@@ -160,6 +172,31 @@
 					<source>${plugin.version.java}</source>
 					<target>${plugin.version.java}</target>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+			    <artifactId>jasperreports-maven-plugin</artifactId>
+			    <version>1.0-beta-2</version>
+			    <dependencies>
+			    	<dependency>
+					    <groupId>commons-logging</groupId>
+					    <artifactId>commons-logging</artifactId>
+					    <version>1.0.2</version>
+					</dependency>
+			    </dependencies>
+			    <executions>
+			    	<execution>
+			    		<id>compile-reports</id>
+			    		<phase>compile</phase>
+			    		<goals>
+			    			<goal>compile-reports</goal>
+			    		</goals>
+			    	</execution>
+			    </executions>
+			    <configuration>
+			    	<xmlValidation>false</xmlValidation>
+			    </configuration>
 			</plugin>
 
 			<plugin>
