@@ -1,20 +1,20 @@
 package org.otojunior.sample;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
+import org.otojunior.sample.decorator.JRDataSourceDecorator;
+import org.otojunior.sample.mock.SampleMockGenerator;
+import org.otojunior.sample.ui.SampleMainFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -29,6 +29,7 @@ public class App {
 	/**
 	 * SLF4J Logger.
 	 */
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 	
 	/**
@@ -37,29 +38,37 @@ public class App {
 	 * @throws JRException 
 	 */
 	public static void main(String[] args) throws JRException {
-		Collection<Pair<String, String>> lst = new ArrayList<>();
-		lst.add(new ImmutablePair<String, String>("um", "one"));
-		lst.add(new ImmutablePair<String, String>("dois", "two"));
-		lst.add(new ImmutablePair<String, String>("três", "three"));
+		Collection<Triple<String, Double, Double>> lst = SampleMockGenerator.create(10000);
 		
-		JRDataSource dataSource = new DataSourceTeste(lst);
+		JRDataSource dataSource = new JRBeanCollectionDataSource(lst);
+		JRDataSourceDecorator dataSourceDecorated = new JRDataSourceDecorator(dataSource, lst.size());
 
-		// --------------------------------------------
-		
-		InputStream inputStreamSubreport = ClassLoader.getSystemClassLoader().getResourceAsStream("subreport.jrxml");
-		JasperReport jasperSubReport = JasperCompileManager.compileReport(inputStreamSubreport);
-		
-		// --------------------------------------------
+		JasperReport jasperSubReport = compileReport("subreport.jrxml");
+		JasperReport jasperReport = compileReport("template.jrxml");
 		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("titulo", "Relatório de Teste");
 		parameters.put("layoutSubReport", jasperSubReport);
 		
+		new SampleMainFrame(dataSourceDecorated).setVisible(true);
 		
-		InputStream inputStreamReport = ClassLoader.getSystemClassLoader().getResourceAsStream("template.jrxml");
-		JasperReport jasperReport = JasperCompileManager.compileReport(inputStreamReport);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(
+			jasperReport, 
+			parameters, 
+			dataSourceDecorated);
 		
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 		new JasperViewer(jasperPrint).setVisible(true);
+	}
+	
+	/**
+	 * 
+	 * @param report
+	 * @return
+	 * @throws JRException
+	 */
+	public static JasperReport compileReport(String report) throws JRException {
+		InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(report);
+		JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+		return jasperReport;
 	}
 }

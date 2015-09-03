@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="template" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.4641000000000006"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="layoutSubReport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
 		<parameterDescription><![CDATA[Layout do Subreport]]></parameterDescription>
 	</parameter>
-	<field name="datasourceSubReport" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="29" splitType="Stretch"/>
+		<band height="8" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="51" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="191" y="6" width="171" height="20"/>
+				<reportElement x="193" y="0" width="171" height="20"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[JASPER REPORTS]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="230" y="26" width="100" height="20"/>
+				<reportElement x="231" y="20" width="100" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="29" splitType="Stretch"/>
+		<band height="9" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<subreport>
 				<reportElement x="0" y="0" width="555" height="125"/>
-				<dataSourceExpression><![CDATA[$F{datasourceSubReport}]]></dataSourceExpression>
+				<dataSourceExpression><![CDATA[$P{REPORT_DATA_SOURCE}]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{layoutSubReport}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="28" splitType="Stretch"/>
+		<band height="8" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="27" splitType="Stretch"/>
+		<band height="8" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="28" splitType="Stretch"/>
+		<band height="7" splitType="Stretch"/>
 	</summary>
 </jasperReport>
