@@ -1,11 +1,12 @@
 package org.otojunior.sample;
 
+import org.otojunior.sample.ui.JanelaPrincipal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Application Main Class.
- * @author [Author name]
+ * @author Oto Junior
  */
 public class App {
 	/**
@@ -18,6 +19,7 @@ public class App {
 	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
-		LOG.info("sample-quickstart Application.");		
+		LOG.info("sample-quickstart Application.");
+		new JanelaPrincipal().setVisible(true);
 	}
 }
