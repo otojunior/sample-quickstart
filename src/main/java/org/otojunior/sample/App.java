@@ -38,7 +38,7 @@ public class App {
 	 * @throws JRException 
 	 */
 	public static void main(String[] args) throws JRException {
-		Collection<Triple<String, Double, Double>> lst = SampleMockGenerator.create(10000);
+		Collection<Triple<String, Double, Double>> lst = SampleMockGenerator.create(100000);
 		
 		JRDataSource dataSource = new JRBeanCollectionDataSource(lst);
 		JRDataSourceDecorator dataSourceDecorated = new JRDataSourceDecorator(dataSource, lst.size());

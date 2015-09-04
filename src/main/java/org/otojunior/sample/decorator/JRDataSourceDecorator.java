@@ -40,8 +40,8 @@ public class JRDataSourceDecorator implements JRDataSource {
 		 * Atraso proposital para ser possível a visualização
 		 * da barra de progresso. 
 		 */
-		try { Thread.sleep(1); } 					
-		catch (InterruptedException e) { e.printStackTrace(); }
+		//try { Thread.sleep(1); } 					
+		//catch (InterruptedException e) { e.printStackTrace(); }
 		
 		return inOperation && decorated.next();
 	}
