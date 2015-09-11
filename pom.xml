@@ -6,7 +6,7 @@
 	<groupId>org.otojunior</groupId>
 	<artifactId>sample-quickstart</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>izpack-jar</packaging>
 
 	<name>Project sample-quickstart</name>
 	<url>http://www.org.otojunior/sample-quickstart</url>
@@ -228,6 +228,55 @@
 					<shortRevisionLength>8</shortRevisionLength>
 					<timestampFormat>{0,date,dd/MM/yyyy HH:mm:ss}</timestampFormat>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-shade-plugin</artifactId>
+			    <version>2.4.1</version>
+			    <executions>
+			    	<execution>
+			    		<id>shade-plugin</id>
+			    		<goals>
+			    			<goal>shade</goal>
+			    		</goals>
+			    		<phase>package</phase>
+			    	</execution>
+			    </executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.codehaus.izpack</groupId>
+				<artifactId>izpack-maven-plugin</artifactId>
+				<version>5.0.3</version>
+				<extensions>true</extensions>
+				
+				<!-- Installer variables
+    <staging.dir>${project.build.directory}/staging</staging.dir>
+    <info.appName>My Killer Application</info.appName>
+    <info.appsubpath>my-killer-app/standard</info.appsubpath>
+    <izpack.dir.app>${basedir}/src/main/izpack</izpack.dir.app>
+    <staging.dir.app>${staging.dir}/appfiles</staging.dir.app>
+    
+    
+    <baseDir>${staging.dir.app}</baseDir>
+      <installFile>${izpack.dir.app}/install.xml</installFile>
+      <outputDirectory>${project.build.directory}</outputDirectory>
+      <finalName>${project.build.finalName}</finalName>
+    
+     	-->
+				
+				
+				<configuration>
+					<baseDir>${project.build.directory}</baseDir>
+					<installFile>${project.build.directory}/classes/install.xml</installFile>
+					<finalName>instalador</finalName>
+					<enableOverrideArtifact>true</enableOverrideArtifact>
+					<mkdirs>true</mkdirs>
+					<autoIncludeUrl>false</autoIncludeUrl>
+					<autoIncludeDevelopers>false</autoIncludeDevelopers>
+				</configuration>
+			
 			</plugin>
 		</plugins>
 	</build>
