@@ -17,7 +17,7 @@
         <modifier key="langDisplayType" value="default"/>
     </guiprefs>
     <locale>
-        <langpack iso3="spa"/>
+        <langpack iso3="bra"/>
     </locale>
     <panels>
         <panel classname="CheckedHelloPanel"/>

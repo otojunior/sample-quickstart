@@ -5,4 +5,5 @@ target/
 *~
 Thumbs.db
 *.log
+izpack/*
 

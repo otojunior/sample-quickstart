@@ -3,7 +3,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.otojunior</groupId>
   <artifactId>sample-quickstart</artifactId>
-  <packaging>izpack-jar</packaging>
   <name>Project sample-quickstart</name>
   <version>1.0-SNAPSHOT</version>
   <url>http://www.org.otojunior/sample-quickstart</url>
@@ -113,7 +112,6 @@
         <version>2.4.1</version>
         <executions>
           <execution>
-            <id>shade-plugin</id>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
@@ -126,10 +124,19 @@
         <artifactId>izpack-maven-plugin</artifactId>
         <version>5.0.3</version>
         <extensions>true</extensions>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>izpack</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
-          <baseDir>${project.build.directory}</baseDir>
-          <installFile>${project.build.directory}/classes/install.xml</installFile>
+          <baseDir>${basedir}/izpack</baseDir>
+          <installFile>${basedir}/izpack/install.xml</installFile>
           <finalName>instalador</finalName>
+          <outputDirectory>${basedir}/izpack</outputDirectory>
           <enableOverrideArtifact>true</enableOverrideArtifact>
           <mkdirs>true</mkdirs>
           <autoIncludeUrl>false</autoIncludeUrl>

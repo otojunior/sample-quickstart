@@ -6,7 +6,7 @@
 	<groupId>org.otojunior</groupId>
 	<artifactId>sample-quickstart</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>izpack-jar</packaging>
+	<packaging>jar</packaging>
 
 	<name>Project sample-quickstart</name>
 	<url>http://www.org.otojunior/sample-quickstart</url>
@@ -236,7 +236,6 @@
 			    <version>2.4.1</version>
 			    <executions>
 			    	<execution>
-			    		<id>shade-plugin</id>
 			    		<goals>
 			    			<goal>shade</goal>
 			    		</goals>
@@ -250,33 +249,24 @@
 				<artifactId>izpack-maven-plugin</artifactId>
 				<version>5.0.3</version>
 				<extensions>true</extensions>
-				
-				<!-- Installer variables
-    <staging.dir>${project.build.directory}/staging</staging.dir>
-    <info.appName>My Killer Application</info.appName>
-    <info.appsubpath>my-killer-app/standard</info.appsubpath>
-    <izpack.dir.app>${basedir}/src/main/izpack</izpack.dir.app>
-    <staging.dir.app>${staging.dir}/appfiles</staging.dir.app>
-    
-    
-    <baseDir>${staging.dir.app}</baseDir>
-      <installFile>${izpack.dir.app}/install.xml</installFile>
-      <outputDirectory>${project.build.directory}</outputDirectory>
-      <finalName>${project.build.finalName}</finalName>
-    
-     	-->
-				
-				
+				<executions>
+					<execution>
+						<goals>
+							<goal>izpack</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
 				<configuration>
-					<baseDir>${project.build.directory}</baseDir>
-					<installFile>${project.build.directory}/classes/install.xml</installFile>
+					<baseDir>${basedir}/izpack</baseDir>
+					<installFile>${basedir}/izpack/install.xml</installFile>
 					<finalName>instalador</finalName>
+					<outputDirectory>${basedir}/izpack</outputDirectory>
 					<enableOverrideArtifact>true</enableOverrideArtifact>
 					<mkdirs>true</mkdirs>
 					<autoIncludeUrl>false</autoIncludeUrl>
 					<autoIncludeDevelopers>false</autoIncludeDevelopers>
 				</configuration>
-			
 			</plugin>
 		</plugins>
 	</build>
