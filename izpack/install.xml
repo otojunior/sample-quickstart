@@ -9,7 +9,7 @@
         <uninstaller name="Uninstaller.jar" write="yes"/>
         <requiresjdk>no</requiresjdk>
         <writeinstallationinformation>no</writeinstallationinformation>
-        <pack200/>
+        <!-- <pack200/> -->
         <run-privileged condition="izpack.windowsinstall.vista|izpack.windowsinstall.7"/>
     </info>
     <guiprefs height="480" resizable="no" width="640">
@@ -28,10 +28,8 @@
     <packs>
         <pack name="SPED" preselected="yes" required="yes">
             <description>Pacote principal</description>
-            <file override="update"
-                src="D:\java\projetos\sample-quickstart\target\sample-quickstart-1.0-SNAPSHOT.jar" targetdir="$INSTALL_PATH/"/>
-            <file override="update"
-                src="D:\java\projetos\sample-quickstart\recursos" targetdir="$INSTALL_PATH/"/>
+            <file override="update" src="../target/sample-quickstart-1.0-SNAPSHOT.jar" targetdir="$INSTALL_PATH/"/>
+            <fileset override="update" includes="recursos/**/*" dir=".." targetdir="$INSTALL_PATH/"/>
         </pack>
     </packs>
 </installation>
