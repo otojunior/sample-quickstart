@@ -260,7 +260,7 @@
 				<configuration>
 					<baseDir>${basedir}/izpack</baseDir>
 					<installFile>${basedir}/izpack/install.xml</installFile>
-					<finalName>instalador</finalName>
+					<finalName>${project.build.finalName}-setup</finalName>
 					<outputDirectory>${basedir}/izpack</outputDirectory>
 					<enableOverrideArtifact>true</enableOverrideArtifact>
 					<mkdirs>true</mkdirs>
