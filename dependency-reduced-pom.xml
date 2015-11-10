@@ -133,10 +133,10 @@
           </execution>
         </executions>
         <configuration>
-          <baseDir>${basedir}/izpack</baseDir>
-          <installFile>${basedir}/izpack/install.xml</installFile>
+          <baseDir>${basedir}/target</baseDir>
+          <installFile>${project.build.outputDirectory}/install.xml</installFile>
           <finalName>${project.build.finalName}-setup</finalName>
-          <outputDirectory>${basedir}/izpack</outputDirectory>
+          <outputDirectory>${basedir}/target</outputDirectory>
           <enableOverrideArtifact>true</enableOverrideArtifact>
           <mkdirs>true</mkdirs>
           <autoIncludeUrl>false</autoIncludeUrl>
