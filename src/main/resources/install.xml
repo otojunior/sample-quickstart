@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
 <installation version="5.0">
     <info>
-        <appname>SPEDTeste</appname>
-        <appversion>1.0.1</appversion>
+        <appname>sample-quickstart</appname>
+        <appversion>1.0-SNAPSHOT</appversion>
         <authors>
             <author email="otojunior@gmail.com" name="Oto Junior"/>
         </authors>
@@ -10,7 +10,7 @@
         <requiresjdk>no</requiresjdk>
         <writeinstallationinformation>no</writeinstallationinformation>
         <!-- <pack200/> -->
-        <run-privileged condition="izpack.windowsinstall.vista|izpack.windowsinstall.7"/>
+        <!-- <run-privileged condition="izpack.windowsinstall.vista|izpack.windowsinstall.7"/> -->
     </info>
     <guiprefs height="480" resizable="no" width="640">
         <modifier key="useFlags" value="yes"/>
@@ -26,7 +26,7 @@
         <panel classname="SimpleFinishPanel"/>
     </panels>
     <packs>
-        <pack name="SPED" preselected="yes" required="yes">
+        <pack name="Completa" preselected="yes" required="yes">
             <description>Pacote principal</description>
             <file override="update" src="../target/sample-quickstart-1.0-SNAPSHOT.jar" targetdir="$INSTALL_PATH/"/>
             <fileset override="update" includes="recursos/**/*" dir=".." targetdir="$INSTALL_PATH/"/>
