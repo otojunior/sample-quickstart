@@ -1,5 +1,7 @@
 package org.otojunior.sample;
 
+import java.util.Calendar;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +18,11 @@ public class App {
 	/**
 	 * Application main method.
 	 * @param args Command line arguments.
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
-		LOG.info("sample-quickstart Application.");		
+	public static void main(String[] args) throws InterruptedException {
+		LOG.info("info message.");
+		LOG.debug("debug message.");
+		LOG.trace("trace message.");
 	}
 }

@@ -1,0 +1,22 @@
+<shortcuts>
+	<skipIfNotSupported />
+	<programGroup 
+		defaultName="MyOrganization\MyApplication"
+		location="startMenu" />
+	<shortcut 
+		name="Start MyApplication"
+		target="java -jar $INSTALL_PATH\sample-quickstart-1.0-SNAPSHOT.jar" 
+		commandLine=""
+		workingDirectory="$INSTALL_PATH" 
+		description="This starts MyApplication"
+		iconFile="$INSTALL_PATH\start.ico"
+		iconIndex="0" 
+		initialState="normal"
+		programGroup="yes" 
+		desktop="yes" 
+		applications="yes"
+		startMenu="yes" 
+		startup="yes">
+		<createForPack name="Pacote principal" />
+	</shortcut>
+</shortcuts>

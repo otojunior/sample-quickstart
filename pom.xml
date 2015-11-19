@@ -20,7 +20,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<dependency.version.commons-lang3>3.3.2</dependency.version.commons-lang3>
 		<dependency.version.commons-collections4>4.0</dependency.version.commons-collections4>
-		<dependency.version.slf4j>1.7.6</dependency.version.slf4j>
+		<dependency.version.slf4j>1.7.13</dependency.version.slf4j>
 		<dependency.version.logback>1.1.2</dependency.version.logback>
 		<dependency.version.c3p0>0.9.1.2</dependency.version.c3p0>
 		<dependency.version.jansi>1.11</dependency.version.jansi>
@@ -79,9 +79,9 @@
 		    <version>${dependency.version.slf4j}</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${dependency.version.logback}</version>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-jdk14</artifactId>
+		    <version>${dependency.version.slf4j}</version>
 		</dependency>
 		<dependency>
 		    <groupId>c3p0</groupId>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+This is the shortcut specification for windows. Its considered default so on
+Systems that are not shortcut compatible the information is taken from here.
+-->
+<shortcuts>
+<programGroup defaultName="SpedTeste" location="applications"/>
+<shortcut
+    name = "Sped Teste"
+    target = "$INSTALL_PATH\oneclickwonder.bat"
+    commandLine = ""
+    workingDirectory= "$INSTALL_PATH"
+    description="Minimal Desktop Timer"
+    iconFile="$INSTALL_PATH\images\windows_icon.ico"
+    iconIndex="0"
+    initialState="noShow"
+    programGroup="yes"
+    desktop="yes"
+    applications="yes"
+    startMenu="yes"
+    startup="yes"/>
+</shortcuts>
