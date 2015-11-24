@@ -29,7 +29,7 @@
 		<dependency.version.powermock>1.5.6</dependency.version.powermock>
 		<plugin.version.java>1.8</plugin.version.java>
 		<plugin.version.maven-jar-plugin>2.4</plugin.version.maven-jar-plugin>
-		<plugin.version.maven-shade-plugin>2.3</plugin.version.maven-shade-plugin>
+		<plugin.version.maven-shade-plugin>2.4.1</plugin.version.maven-shade-plugin>
 		<plugin.version.maven-compiler-plugin>3.1</plugin.version.maven-compiler-plugin>
 		<plugin.version.maven-source-plugin>2.2.1</plugin.version.maven-source-plugin>
 		<plugin.version.maven-javadoc-plugin>2.9.1</plugin.version.maven-javadoc-plugin>
@@ -142,16 +142,6 @@
 				</configuration>
 			</plugin>
 			
-			<!-- Executable JAR creation: mvn clean package shade:shade -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>${plugin.version.maven-shade-plugin}</version>
-				<configuration>
-					<minimizeJar>false</minimizeJar>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -233,7 +223,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-shade-plugin</artifactId>
-			    <version>2.4.1</version>
+			    <version>${plugin.version.maven-shade-plugin}</version>
+			    <configuration>
+					<minimizeJar>false</minimizeJar>
+				</configuration>
 			    <executions>
 			    	<execution>
 			    		<goals>
