@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Triple;
+import org.otojunior.sample.datasource.JRRandomSampleDatasource;
 import org.otojunior.sample.decorator.JRDataSourceDecorator;
 import org.otojunior.sample.mock.SampleMockGenerator;
 import org.otojunior.sample.ui.SampleMainFrame;
@@ -35,16 +36,16 @@ public class App {
 	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 	
+	private static final int MAX = 100000;
+	
 	/**
 	 * Application main method.
 	 * @param args Command line arguments.
 	 * @throws JRException 
 	 */
 	public static void main(String[] args) throws JRException {
-		Collection<Triple<String, Double, Double>> lst = SampleMockGenerator.create(100000);
-		
-		JRDataSource dataSource = new JRBeanCollectionDataSource(lst);
-		JRDataSourceDecorator dataSourceDecorated = new JRDataSourceDecorator(dataSource, lst.size());
+		JRDataSource dataSource = new JRRandomSampleDatasource(MAX);
+		JRDataSourceDecorator dataSourceDecorated = new JRDataSourceDecorator(dataSource, MAX);
 
 		JasperReport jasperSubReport = compileReport("subreport.jrxml");
 		JasperReport jasperReport = compileReport("template.jrxml");
@@ -56,7 +57,7 @@ public class App {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("titulo", "Relatório de Teste");
 		parameters.put("layoutSubReport", jasperSubReport);
-		parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+		//parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 		
 		new SampleMainFrame(dataSourceDecorated).setVisible(true);
 		
