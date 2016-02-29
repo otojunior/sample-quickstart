@@ -14,11 +14,14 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
+import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -46,9 +49,14 @@ public class App {
 		JasperReport jasperSubReport = compileReport("subreport.jrxml");
 		JasperReport jasperReport = compileReport("template.jrxml");
 		
+		// virtualizer: (para testar: -Xmx32m)
+		JRSwapFile swapFile = new JRSwapFile(System.getProperty("java.io.tmpdir"), 1024, 500);
+		JRSwapFileVirtualizer virtualizer = new JRSwapFileVirtualizer(50, swapFile, true);
+				
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("titulo", "Relatório de Teste");
 		parameters.put("layoutSubReport", jasperSubReport);
+		parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 		
 		new SampleMainFrame(dataSourceDecorated).setVisible(true);
 		
