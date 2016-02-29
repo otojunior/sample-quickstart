@@ -1,14 +1,11 @@
 package org.otojunior.sample;
 
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.tuple.Triple;
 import org.otojunior.sample.datasource.JRRandomSampleDatasource;
 import org.otojunior.sample.decorator.JRDataSourceDecorator;
-import org.otojunior.sample.mock.SampleMockGenerator;
 import org.otojunior.sample.ui.SampleMainFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +17,6 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.fill.JRSwapFileVirtualizer;
 import net.sf.jasperreports.engine.util.JRSwapFile;
 import net.sf.jasperreports.view.JasperViewer;
@@ -36,7 +32,7 @@ public class App {
 	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 	
-	private static final int MAX = 100000;
+	private static final int MAX = 1000000;
 	
 	/**
 	 * Application main method.
@@ -57,7 +53,7 @@ public class App {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("titulo", "Relatório de Teste");
 		parameters.put("layoutSubReport", jasperSubReport);
-		//parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
+		parameters.put(JRParameter.REPORT_VIRTUALIZER, virtualizer);
 		
 		new SampleMainFrame(dataSourceDecorated).setVisible(true);
 		

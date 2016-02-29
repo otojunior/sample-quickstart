@@ -3,8 +3,6 @@
  */
 package org.otojunior.sample.datasource;
 
-import org.apache.commons.lang3.tuple.Triple;
-
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRField;
@@ -22,7 +20,7 @@ public class JRRandomSampleDatasource implements JRDataSource {
 	 * @param max
 	 */
 	public JRRandomSampleDatasource(int max) {
-		this.count = 0;
+		this.count = -1;
 		this.max = max;
 	}
 	
@@ -31,7 +29,7 @@ public class JRRandomSampleDatasource implements JRDataSource {
 	 */
 	@Override
 	public boolean next() throws JRException {
-		if (count <= max) {
+		if (count < max) {
 			count++;
 			return true;
 		}
@@ -43,9 +41,12 @@ public class JRRandomSampleDatasource implements JRDataSource {
 	 */
 	@Override
 	public Object getFieldValue(JRField jrField) throws JRException {
-		return Triple.of(
-			"Elemento " + count, 
-			Double.valueOf(Math.random()), 
-			Double.valueOf(Math.random()));
+		Object retorno = null;
+		if ("left".equals(jrField.getName())) {
+			return "Elemento " + count;
+		} else {
+			retorno = Double.valueOf(Math.random());
+		}
+		return retorno;
 	}
 }
