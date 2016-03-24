@@ -3,14 +3,16 @@
  */
 package org.otojunior.sample;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
+import org.otojunior.sample.componentes.SLabelComCheckbox;
+import org.otojunior.sample.componentes.SLabelComX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,31 +22,53 @@ import org.slf4j.LoggerFactory;
  */
 public class SamplePanelGrid extends JPanel {
 	private static final long serialVersionUID = 5764372855443419063L;
+	private static final int ITENS_POR_COLUNA = 20;
+	
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(SamplePanelGrid.class);
 	
 	/**
 	 * 
 	 */
 	public SamplePanelGrid() {
-		final int TOTAL_ITENS = 6;			// tamanho da lista
-		final int ITENS_POR_COLUNA = 20;
+		this.setLayout(new BorderLayout());
 		
-		int numeroLinhas = ITENS_POR_COLUNA;
-		int numeroColunas = (int)Math.ceil(((double)TOTAL_ITENS/ITENS_POR_COLUNA));
-
-		setLayout(new GridLayout(numeroLinhas,numeroColunas));
-		setBackground(Color.WHITE);
-				
-		for (int i = 0; i < TOTAL_ITENS ; i++) {
-			JCheckBox checkbox = new JCheckBox("Checkbox de teste do GridBagLayout: identificador do componente: " + i);
-			checkbox.setBackground(Color.WHITE);
-			
-			add(checkbox);
-		}
+		JTabbedPane tabbedPane = new JTabbedPane();
+		
+		
+		JPanel abaA = criarAba(10);
+		JPanel abaB = criarAba(25);
+		JPanel abaC = criarAba(35);
+		
+		tabbedPane.add(abaA);
+		tabbedPane.add(abaB);
+		tabbedPane.add(abaC);
+		
+		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaA), new SLabelComCheckbox("Aba de Teste 1"));
+		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaB), new SLabelComX("Aba de Teste 2", tabbedPane, abaB));
+		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaC), new SLabelComX("Aba de Teste 3", tabbedPane, abaC));
+		
+		
+		this.add(tabbedPane, BorderLayout.CENTER);
 	}
 	
-	private GridBagConstraints criarRestricoes(int gridx, int gridy, double wei) {
-		return null;
+	public JPanel criarAba(final int totalItens) {
+		JPanel aba = new JPanel();
+		aba.setLayout(new BorderLayout());
+		aba.setBackground(Color.WHITE);
 		
+		int numeroLinhas = ITENS_POR_COLUNA;
+		int numeroColunas = (int)Math.ceil(((double)totalItens/ITENS_POR_COLUNA));
+
+		aba.setLayout(new GridLayout(numeroLinhas,numeroColunas));
+		aba.setBackground(Color.WHITE);
+				
+		for (int i = 0; i < totalItens ; i++) {
+			JCheckBox checkbox = new JCheckBox("Checkbox de teste do GridBagLayout: identificador do componente: " + i);
+			checkbox.setBackground(Color.WHITE);
+			checkbox.setSelected(true);
+			aba.add(checkbox);
+		}
+		return aba;
 	}
 }

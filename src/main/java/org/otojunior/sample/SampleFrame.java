@@ -28,8 +28,11 @@ public class SampleFrame extends JFrame {
 		JPanel painelCentro = new SamplePanelGrid();
 		
 		// painel sul
+		JButton btn = new JButton("Visualizar");
+		btn.addActionListener(evt -> SampleFrame.this.dispose());
+
 		JPanel painelSul = new JPanel();
-		painelSul.add(new JButton("Visualizar"));
+		painelSul.add(btn);
 		
 		getContentPane().add(painelCentro, BorderLayout.CENTER);
 		getContentPane().add(painelSul, BorderLayout.SOUTH);
