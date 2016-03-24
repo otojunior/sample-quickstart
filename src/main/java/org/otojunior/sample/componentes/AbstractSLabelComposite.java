@@ -18,7 +18,7 @@ public abstract class AbstractSLabelComposite extends JComponent {
 	private static final long serialVersionUID = 3865414825979437960L;
 	private static final Border EMPTY_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 5);
 	
-	protected JLabel label;
+	private JLabel label;
 	
 	/**
 	 * Construtor alternativo.

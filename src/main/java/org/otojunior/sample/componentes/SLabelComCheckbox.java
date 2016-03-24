@@ -33,11 +33,17 @@ public class SLabelComCheckbox extends AbstractSLabelComposite {
 	 */
 	public SLabelComCheckbox(String text, ChangeListener changeListener) {
 		super(text);
+		
 		criarCheckbox();
+		
 		this.addCheckChangeListener(changeListener);
 		this.add(checkbox);
 	}
 
+	/**
+	 * 
+	 * @param checkChangeListener
+	 */
 	public void addCheckChangeListener(ChangeListener checkChangeListener) {
 		if (checkChangeListener != null) {
 			this.checkbox.addChangeListener(checkChangeListener);
