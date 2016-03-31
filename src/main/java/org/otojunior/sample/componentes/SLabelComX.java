@@ -21,7 +21,7 @@ public class SLabelComX extends AbstractSLabelComposite {
 	private static final long serialVersionUID = 3865414825979437960L;
 	private static final Insets EMPTY_INSETS = new Insets(0, 5, 0, 5);
 	
-	private JButton botao;
+	protected JButton botao;
 	
 	/**
 	 * Construtor padrão.

@@ -5,14 +5,17 @@ package org.otojunior.sample;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import org.otojunior.sample.componentes.SLabelComCheckbox;
 import org.otojunior.sample.componentes.SLabelComX;
+import org.otojunior.sample.componentes.custom.SLabelComXCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +49,7 @@ public class SamplePanelGrid extends JPanel {
 		
 		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaA), new SLabelComCheckbox("Aba de Teste 1"));
 		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaB), new SLabelComX("Aba de Teste 2", tabbedPane, abaB));
-		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaC), new SLabelComX("Aba de Teste 3", tabbedPane, abaC));
+		tabbedPane.setTabComponentAt(tabbedPane.indexOfComponent(abaC), new SLabelComXCustom("Aba de Teste 3", tabbedPane, abaC));
 		
 		
 		this.add(tabbedPane, BorderLayout.CENTER);
@@ -62,7 +65,15 @@ public class SamplePanelGrid extends JPanel {
 
 		aba.setLayout(new GridLayout(numeroLinhas,numeroColunas));
 		aba.setBackground(Color.WHITE);
-				
+		
+		JLabel x = new JLabel("teste");
+		Font font = x.getFont();
+		font = font.deriveFont(font.getSize()*2);
+		font = font.deriveFont(Font.BOLD, (float)(font.getSize()-0.5));
+		x.setFont(font);
+		
+		aba.add(x);
+		
 		for (int i = 0; i < totalItens ; i++) {
 			JCheckBox checkbox = new JCheckBox("Checkbox de teste do GridBagLayout: identificador do componente: " + i);
 			checkbox.setBackground(Color.WHITE);

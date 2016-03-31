@@ -16,7 +16,7 @@ public class SLabelComCheckbox extends AbstractSLabelComposite {
 	private static final long serialVersionUID = 3865414825979437960L;
 	private static final Insets EMPTY_INSETS = new Insets(0, 0, 0, 0);
 	
-	private JCheckBox checkbox;
+	protected JCheckBox checkbox;
 	
 	/**
 	 * Construtor padrão.
