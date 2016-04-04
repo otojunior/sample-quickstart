@@ -10,9 +10,9 @@ import javax.script.ScriptEngineManager;
  * Lua Language interface.
  * @author Oto Junior
  */
-public interface LuaJ {
+public interface Lua {
 	/**
 	 * Lua Language engine.
 	 */
-	ScriptEngine ENGINE = new ScriptEngineManager().getEngineByName("luaj");
+	ScriptEngine ENGINE = new ScriptEngineManager().getEngineByName("lua");
 }

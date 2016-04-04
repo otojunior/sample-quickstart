@@ -6,7 +6,7 @@ import java.io.Reader;
 
 import javax.script.ScriptException;
 
-import org.otojunior.sample.engines.LuaJ;
+import org.otojunior.sample.engines.Lua;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,10 +29,10 @@ public class LuaTests {
 	public static void main(String[] args) throws ScriptException, IOException {
 		Reader reader = new FileReader("target/classes/teste.lua");
 		
-		LuaJ.ENGINE.eval("print('script teste')");
-		LuaJ.ENGINE.eval(reader);
-		LuaJ.ENGINE.eval("print(soma(2,3))");
-		Object o = LuaJ.ENGINE.eval("soma(4,3)");
+		Lua.ENGINE.eval("print('script teste')");
+		Lua.ENGINE.eval(reader);
+		Lua.ENGINE.eval("print(soma(2,3))");
+		Object o = Lua.ENGINE.eval("soma(4,3)");
 		
 		LOG.info(Boolean.valueOf(o == null).toString());
 		if (o != null)
