@@ -18,6 +18,7 @@ public class LuaTests {
 	/**
 	 * SLF4J Logger.
 	 */
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(LuaTests.class);
 	
 	/**
@@ -25,18 +26,16 @@ public class LuaTests {
 	 * @param args Command line arguments.
 	 * @throws ScriptException 
 	 * @throws IOException 
+	 * @throws NoSuchMethodException 
 	 */
-	public static void main(String[] args) throws ScriptException, IOException {
+	public static void main(String[] args) throws ScriptException, IOException, NoSuchMethodException {
 		Reader reader = new FileReader("target/classes/teste.lua");
 		
 		Lua.ENGINE.eval("print('script teste')");
 		Lua.ENGINE.eval(reader);
 		Lua.ENGINE.eval("print(soma(2,3))");
-		Object o = Lua.ENGINE.eval("soma(4,3)");
-		
-		LOG.info(Boolean.valueOf(o == null).toString());
-		if (o != null)
-			LOG.info(o.toString());
+		Lua.ENGINE.eval("r = soma(4,3)");
+		System.out.println(Lua.ENGINE.get("r"));
 		
 		reader.close();
 	}

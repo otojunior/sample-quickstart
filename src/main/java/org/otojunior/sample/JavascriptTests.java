@@ -18,6 +18,7 @@ public class JavascriptTests {
 	/**
 	 * SLF4J Logger.
 	 */
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(JavascriptTests.class);
 	
 	/**
@@ -32,12 +33,8 @@ public class JavascriptTests {
 		Javascript.ENGINE.eval("print('script teste')");
 		Javascript.ENGINE.eval(reader);
 		Javascript.ENGINE.eval("print(soma(2,3))");
-		Object o = Javascript.ENGINE.eval("soma(4,3)");
+		System.out.println(Javascript.ENGINE.eval("soma(4,3)"));
 		
-		LOG.info(Boolean.valueOf(o == null).toString());
-		if (o != null)
-			LOG.info(o.toString());
-
 		reader.close();
 	}
 }
