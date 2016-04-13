@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.sample.tasks;
+package org.otojunior.sample.forkjoin.tasks;
 
 import java.util.ArrayList;
 import java.util.List;

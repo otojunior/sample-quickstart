@@ -1,12 +1,12 @@
 /**
  * 
  */
-package org.otojunior.sample;
+package org.otojunior.sample.forkjoin.runner;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
-import org.otojunior.sample.tasks.MyRecursiveTask;
+import org.otojunior.sample.forkjoin.tasks.MyRecursiveTask;
 import org.otojunior.sample.util.Sequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
