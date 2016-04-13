@@ -19,6 +19,14 @@ public class MyCallable extends AbstractMyTask implements Callable<Integer> {
 	}
 	
 	/**
+	 * Construtor padrão.
+	 * @param id
+	 */
+	public MyCallable(int id, int delay) {
+		super(id, delay);
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

@@ -17,6 +17,14 @@ public class MyRunnable extends AbstractMyTask implements Runnable {
 	}
 	
 	/**
+	 * Construtor padrão.
+	 * @param id
+	 */
+	public MyRunnable(int id, int delay) {
+		super(id, delay);
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
