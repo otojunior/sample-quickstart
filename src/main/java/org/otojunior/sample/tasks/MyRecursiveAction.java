@@ -1,11 +1,13 @@
 /**
  * 
  */
-package org.otojunior.sample;
+package org.otojunior.sample.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveAction;
+
+import org.otojunior.sample.util.Sequence;
 
 /**
  * @author 01456231650
@@ -30,14 +32,14 @@ public class MyRecursiveAction extends RecursiveAction {
 	 */
 	@Override
 	protected void compute() {
-		if (carga <= 16) {
+		if (carga <= 10) {
 			System.out.println("Processando a carga na action atual id: " + id + "\t::\tcarga: " + carga);
 		} else {
 			System.out.println("Redistribuindo carga para action id: " + id);
 
 			List<MyRecursiveAction> subtasks = new ArrayList<MyRecursiveAction>();
-            subtasks.add(new MyRecursiveAction((id) * 10, this.carga / 2));
-            subtasks.add(new MyRecursiveAction((id+1) * 10, this.carga / 2));
+            subtasks.add(new MyRecursiveAction(Sequence.nextInt(), this.carga / 2));
+            subtasks.add(new MyRecursiveAction(Sequence.nextInt(), this.carga / 2));
 
             for(RecursiveAction subtask : subtasks) {
                 subtask.fork();
