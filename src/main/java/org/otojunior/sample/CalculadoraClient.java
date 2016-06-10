@@ -1,7 +1,7 @@
 package org.otojunior.sample;
 
-import org.otojunior.sample.soap.CalculadoraWSService;
-import org.otojunior.sample.soap.ICalculadoraWS;
+import org.otojunior.sample.soap.CalculadoraSOAPService;
+import org.otojunior.sample.soap.ICalculadoraSOAP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,8 +22,8 @@ public class CalculadoraClient {
 	public static void main(String[] args) {
 		LOG.info("sample-quickstart Application.");
 		
-		CalculadoraWSService service = new CalculadoraWSService();
-		ICalculadoraWS port = service.getCalculadoraWSPort();
+		CalculadoraSOAPService service = new CalculadoraSOAPService();
+		ICalculadoraSOAP port = service.getCalculadoraSOAPPort();
 		
 		LOG.info("Soma: " + port.somar(2, 3));
 		LOG.info("Subtração: " + port.subtrair(10, 3));

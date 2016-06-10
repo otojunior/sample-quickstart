@@ -230,7 +230,6 @@
 				</configuration>
 			</plugin>
 			
-			
 			<!-- 
 				Se houver Exceptions na execução do plugin com o Java 8, tentar a seguinte solução:
 				Criar um arquivo 'jaxp.properties' sob o diretório <jdk8>/jre/lib com o conteúdo:
@@ -250,7 +249,8 @@
 			    <configuration>
 			    	<packageName>org.otojunior.sample.soap</packageName>
 					<wsdlUrls>
-					    <wsdlUrl>http://localhost:8080/sample-jee6-webapp/CalculadoraWS?wsdl</wsdlUrl>
+					    <wsdlUrl>http://localhost:8080/sample-jee6-webapp/CalculadoraSOAP?wsdl</wsdlUrl>
+					    <wsdlUrl>http://localhost:8080/sample-jee6-webapp/UsuarioSOAP?wsdl</wsdlUrl>
 					</wsdlUrls>
 					<verbose>true</verbose>
 			    </configuration>
