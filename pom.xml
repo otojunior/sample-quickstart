@@ -27,7 +27,7 @@
 		<dependency.version.junit>4.11</dependency.version.junit>
 		<dependency.version.easymock>3.2</dependency.version.easymock>
 		<dependency.version.powermock>1.5.6</dependency.version.powermock>
-		<plugin.version.java>1.7</plugin.version.java>
+		<plugin.version.java>1.8</plugin.version.java>
 		<plugin.version.maven-jar-plugin>2.4</plugin.version.maven-jar-plugin>
 		<plugin.version.maven-shade-plugin>2.3</plugin.version.maven-shade-plugin>
 		<plugin.version.maven-compiler-plugin>3.1</plugin.version.maven-compiler-plugin>
@@ -155,7 +155,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${plugin.version.maven-compiler-plugin}</version>
+				<!-- <version>${plugin.version.maven-compiler-plugin}</version> -->
 				<configuration>
 					<source>${plugin.version.java}</source>
 					<target>${plugin.version.java}</target>
@@ -228,6 +228,32 @@
 					<shortRevisionLength>8</shortRevisionLength>
 					<timestampFormat>{0,date,dd/MM/yyyy HH:mm:ss}</timestampFormat>
 				</configuration>
+			</plugin>
+			
+			
+			<!-- 
+				Se houver Exceptions na execução do plugin com o Java 8, tentar a seguinte solução:
+				Criar um arquivo 'jaxp.properties' sob o diretório <jdk8>/jre/lib com o conteúdo:
+				javax.xml.accessExternalSchema = all
+			 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+			    <artifactId>jaxws-maven-plugin</artifactId>
+			    <version>2.4.1</version>
+			    <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>wsimport</goal>
+	                    </goals>
+	                </execution>
+	           </executions>
+			    <configuration>
+			    	<packageName>org.otojunior.sample.soap</packageName>
+					<wsdlUrls>
+					    <wsdlUrl>http://localhost:8080/sample-jee6-webapp/CalculadoraWS?wsdl</wsdlUrl>
+					</wsdlUrls>
+					<verbose>true</verbose>
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>
