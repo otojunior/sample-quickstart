@@ -206,12 +206,6 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>org.codehaus.sonar</groupId>
-			    <artifactId>sonar-maven3-plugin</artifactId>
-			    <version>${plugin.version.sonar-maven3-plugin}</version>
-			</plugin>
-			
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
 				<version>${plugin.version.buildnumber-maven-plugin}</version>
