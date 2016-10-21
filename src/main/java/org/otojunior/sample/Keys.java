@@ -40,4 +40,18 @@ public class Keys {
 			LOG.error(e.getMessage(), e);
 		}
 	}
+
+	/**
+	 * @return the publicKey
+	 */
+	public PublicKey getPublicKey() {
+		return publicKey;
+	}
+
+	/**
+	 * @return the privateKey
+	 */
+	public PrivateKey getPrivateKey() {
+		return privateKey;
+	}
 }

@@ -1,10 +1,6 @@
 package org.otojunior.sample;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
-import java.security.SecureRandom;
-import java.security.Security;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +23,7 @@ public class App {
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		LOG.info("sample-quickstart Application.");
 		
-		Keys k = new Keys();
-		k.generate();
+		Signer signer = new Signer();
+		signer.sign("teste de assinatura");
 	}
 }
