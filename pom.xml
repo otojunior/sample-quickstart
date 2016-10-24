@@ -21,6 +21,7 @@
 		<dependency.version.commons-lang3>3.3.2</dependency.version.commons-lang3>
 		<dependency.version.commons-collections4>4.0</dependency.version.commons-collections4>
 		<dependency.version.commons-codec>1.10</dependency.version.commons-codec>
+		<dependency.version.commons-io>2.5</dependency.version.commons-io>
 		<dependency.version.slf4j>1.7.6</dependency.version.slf4j>
 		<dependency.version.logback>1.1.2</dependency.version.logback>
 		<dependency.version.c3p0>0.9.1.2</dependency.version.c3p0>
@@ -78,6 +79,11 @@
 		    <groupId>commons-codec</groupId>
 		    <artifactId>commons-codec</artifactId>
 		    <version>${dependency.version.commons-codec}</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>${dependency.version.commons-io}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.slf4j</groupId>
