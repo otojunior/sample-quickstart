@@ -25,5 +25,6 @@ public class App {
 		
 		Signer signer = new Signer();
 		signer.sign("teste de assinatura");
+		signer.signWithHash("teste de assinatura");
 	}
 }
