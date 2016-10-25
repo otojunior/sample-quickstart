@@ -21,13 +21,13 @@ import org.slf4j.LoggerFactory;
 public class Signer {
 	private static final Logger LOG = LoggerFactory.getLogger(Signer.class);
 	
-	private PrivateKey pk;
+	private PrivateKey privateKey;
 	
 	/**
 	 * Default constructor.
 	 */
 	public Signer() {
-		pk = (PrivateKey)Memory.keys.get("privateKey");
+		privateKey = (PrivateKey)Memory.keys.get("privateKey");
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Signer {
 	public void sign(String message) {
 		try {
 			Signature signature = Signature.getInstance("DSA");
-			signature.initSign(pk);
+			signature.initSign(privateKey);
 			signature.update(message.getBytes());
 			byte[] sign = signature.sign();
 
@@ -62,7 +62,7 @@ public class Signer {
 			LOG.info("Hash: " + hash.length + " " + Hex.encodeHexString(hash));
 			
 			Signature signature = Signature.getInstance("DSA");
-			signature.initSign(pk);
+			signature.initSign(privateKey);
 			signature.update(hash);
 			byte[] sign = signature.sign();
 
