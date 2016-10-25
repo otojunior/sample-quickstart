@@ -23,6 +23,11 @@ public class App {
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		LOG.info("sample-quickstart Application.");
 		
+		Keys keys = new Keys();
+		keys.generate();
+		Memory.keys.put("privateKey", keys.getPrivateKey());
+		Memory.keys.put("publicKey", keys.getPublicKey());
+		
 		Signer signer = new Signer();
 		signer.sign("teste de assinatura");
 		signer.signWithHash("teste de assinatura");

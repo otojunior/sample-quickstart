@@ -3,8 +3,6 @@
  */
 package org.otojunior.sample;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +11,6 @@ import java.security.Signature;
 import java.security.SignatureException;
 
 import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,9 +27,7 @@ public class Signer {
 	 * Default constructor.
 	 */
 	public Signer() {
-		Keys keys = new Keys();
-		keys.generate();
-		pk = keys.getPrivateKey();
+		pk = (PrivateKey)Memory.keys.get("privateKey");
 	}
 	
 	/**
@@ -47,12 +42,9 @@ public class Signer {
 			byte[] sign = signature.sign();
 
 			LOG.info("Assinatura: " + String.valueOf(sign.length) + " " + Hex.encodeHexString(sign));
+			Memory.signs.put("signFullMessage", sign);
 			
-			FileOutputStream out = new FileOutputStream("signature.dat"); 
-			IOUtils.write(sign, out);
-			IOUtils.closeQuietly(out);
-			
-		} catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException | IOException e) {
+		} catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
 			LOG.error(e.getMessage(), e);
 		}
 	}
@@ -75,12 +67,9 @@ public class Signer {
 			byte[] sign = signature.sign();
 
 			LOG.info("Assinatura: " + String.valueOf(sign.length) + " " + Hex.encodeHexString(sign));
+			Memory.signs.put("signHashMessage", sign);
 			
-			FileOutputStream out = new FileOutputStream("signature-hash.dat"); 
-			IOUtils.write(sign, out);
-			IOUtils.closeQuietly(out);
-			
-		} catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException | IOException e) {
+		} catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
 			LOG.error(e.getMessage(), e);
 		}
 	}
