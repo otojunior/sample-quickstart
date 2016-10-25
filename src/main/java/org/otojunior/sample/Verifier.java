@@ -14,61 +14,56 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author homologa
+ * @author Oto Junior
  *
  */
 public class Verifier {
 	private static final Logger LOG = LoggerFactory.getLogger(Verifier.class);
 	
-	private PublicKey publicKey;
+	private String signatureAlgorithm;
+	private String hashAlgorithm;
 	
 	/**
-	 * 
+	 * Default constructor.
 	 */
-	public Verifier() {
-		publicKey = (PublicKey)Memory.keys.get("publicKey");
+	public Verifier(String signatureAlgorithm, String hashAlgorithm) {
+		this.signatureAlgorithm = signatureAlgorithm;
+		this.hashAlgorithm = hashAlgorithm;
 	}
 	
 	/**
 	 * 
 	 */
-	public void verify(String message) {
+	public boolean verify(String message, PublicKey publicKey, byte[] sign) {
+		boolean authentic = false; 
 		try {
-			byte[] sign = Memory.signs.get("signFullMessage");
-			
-			Signature signature = Signature.getInstance("DSA");
+			Signature signature = Signature.getInstance(signatureAlgorithm);
 			signature.initVerify(publicKey);
 			signature.update(message.getBytes());
-			boolean authentic = signature.verify(sign);
-			
-			LOG.info("Is Authentic? " + authentic);
-			
+			authentic = signature.verify(sign);
 		} catch (NoSuchAlgorithmException | InvalidKeyException | SignatureException e) {
 			LOG.error(e.getMessage(), e);
 		}
+		return authentic;
 	}
 	
 	/**
 	 * 
 	 */
-	public void verifyWithHash(String message) {
+	public boolean verifyWithHash(String message, PublicKey publicKey, byte[] sign) {
+		boolean authentic = false;
 		try {
-			MessageDigest digester = MessageDigest.getInstance("MD5");
+			MessageDigest digester = MessageDigest.getInstance(hashAlgorithm);
 			digester.update(message.getBytes());
 			byte[] hash = digester.digest();
 			
-			byte[] sign = Memory.signs.get("signHashMessage");
-			
-			Signature signature = Signature.getInstance("DSA");
+			Signature signature = Signature.getInstance(signatureAlgorithm);
 			signature.initVerify(publicKey);
 			signature.update(hash);
-			boolean authentic = signature.verify(sign);
-			
-			LOG.info("Is Authentic? " + authentic);
-			
+			authentic = signature.verify(sign);
 		} catch (NoSuchAlgorithmException | InvalidKeyException | SignatureException e) {
 			LOG.error(e.getMessage(), e);
 		}
+		return authentic;
 	}
-
 }

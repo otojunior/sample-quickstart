@@ -15,62 +15,64 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author homologa
+ * @author Oto Junior
  *
  */
 public class Signer {
 	private static final Logger LOG = LoggerFactory.getLogger(Signer.class);
 	
-	private PrivateKey privateKey;
+	private String signatureAlgorithm;
+	private String hashAlgorithm;
 	
 	/**
 	 * Default constructor.
 	 */
-	public Signer() {
-		privateKey = (PrivateKey)Memory.keys.get("privateKey");
+	public Signer(String signatureAlgorithm, String hashAlgorithm) {
+		this.signatureAlgorithm = signatureAlgorithm;
+		this.hashAlgorithm = hashAlgorithm;
 	}
 	
 	/**
 	 * 
 	 * @param message
 	 */
-	public void sign(String message) {
+	public byte[] sign(String message, PrivateKey privateKey) {
+		byte[] sign = null;
 		try {
-			Signature signature = Signature.getInstance("DSA");
+			Signature signature = Signature.getInstance(signatureAlgorithm);
 			signature.initSign(privateKey);
 			signature.update(message.getBytes());
-			byte[] sign = signature.sign();
-
+			sign = signature.sign();
 			LOG.info("Assinatura: " + String.valueOf(sign.length) + " " + Hex.encodeHexString(sign));
-			Memory.signs.put("signFullMessage", sign);
-			
 		} catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
 			LOG.error(e.getMessage(), e);
 		}
+		return sign;
 	}
 	
 	/**
 	 * 
 	 * @param message
+	 * @return 
 	 */
-	public void signWithHash(String message) {
+	public byte[] signWithHash(String message, PrivateKey privateKey) {
+		byte[] sign = null;
 		try {
-			MessageDigest digester = MessageDigest.getInstance("MD5");
+			MessageDigest digester = MessageDigest.getInstance(hashAlgorithm);
 			digester.update(message.getBytes());
 			byte[] hash = digester.digest();
 			
 			LOG.info("Hash: " + hash.length + " " + Hex.encodeHexString(hash));
 			
-			Signature signature = Signature.getInstance("DSA");
+			Signature signature = Signature.getInstance(signatureAlgorithm);
 			signature.initSign(privateKey);
 			signature.update(hash);
-			byte[] sign = signature.sign();
-
-			LOG.info("Assinatura: " + String.valueOf(sign.length) + " " + Hex.encodeHexString(sign));
-			Memory.signs.put("signHashMessage", sign);
+			sign = signature.sign();
 			
+			LOG.info("Assinatura: " + String.valueOf(sign.length) + " " + Hex.encodeHexString(sign));
 		} catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
 			LOG.error(e.getMessage(), e);
 		}
+		return sign;
 	}
 }

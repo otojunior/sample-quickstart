@@ -15,6 +15,9 @@ public class App {
 	 */
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 	
+	private static final String SIGNATURE_ALGORITHM = "DSA";
+	private static final String HASH_ALGORITHM = "MD5";
+	
 	/**
 	 * Application main method.
 	 * @param args Command line arguments.
@@ -33,15 +36,16 @@ public class App {
 		
 		Keys keys = new Keys();
 		keys.generate();
-		Memory.keys.put("privateKey", keys.getPrivateKey());
-		Memory.keys.put("publicKey", keys.getPublicKey());
 		
-		Signer signer = new Signer();
-		signer.sign(message);
-		signer.signWithHash(message);
+		Signer signer = new Signer(SIGNATURE_ALGORITHM, HASH_ALGORITHM);
+		byte[] sign 	=	signer.sign(message, keys.getPrivateKey());
+		byte[] signHash = 	signer.signWithHash(message, keys.getPrivateKey());
 		
-		Verifier verifier = new Verifier();
-		verifier.verify(message);
-		verifier.verifyWithHash(message);
+		Verifier verifier = new Verifier(SIGNATURE_ALGORITHM, HASH_ALGORITHM);
+		boolean auth 		= 	verifier.verify(message, keys.getPublicKey(), sign);
+		boolean authHash 	= 	verifier.verifyWithHash(message, keys.getPublicKey(), signHash);
+		
+		LOG.info("Authentic? " + auth);
+		LOG.info("Authentic with hash? " + authHash);
 	}
 }
