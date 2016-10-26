@@ -15,8 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Oto Junior
+ * <p>Signer class.</p>
  *
+ * @author Oto Junior
+ * @version $Id: $Id
  */
 public class Signer {
 	private static final Logger LOG = LoggerFactory.getLogger(Signer.class);
@@ -26,6 +28,9 @@ public class Signer {
 	
 	/**
 	 * Default constructor.
+	 *
+	 * @param signatureAlgorithm a {@link java.lang.String} object.
+	 * @param hashAlgorithm a {@link java.lang.String} object.
 	 */
 	public Signer(String signatureAlgorithm, String hashAlgorithm) {
 		this.signatureAlgorithm = signatureAlgorithm;
@@ -33,8 +38,11 @@ public class Signer {
 	}
 	
 	/**
-	 * 
-	 * @param message
+	 * <p>sign.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 * @param privateKey a {@link java.security.PrivateKey} object.
+	 * @return an array of byte.
 	 */
 	public byte[] sign(String message, PrivateKey privateKey) {
 		byte[] sign = null;
@@ -51,9 +59,11 @@ public class Signer {
 	}
 	
 	/**
-	 * 
-	 * @param message
-	 * @return 
+	 * <p>signWithHash.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 * @param privateKey a {@link java.security.PrivateKey} object.
+	 * @return an array of byte.
 	 */
 	public byte[] signWithHash(String message, PrivateKey privateKey) {
 		byte[] sign = null;

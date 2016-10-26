@@ -12,9 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * @author homologa
+ * <p>Keys class.</p>
  *
+ * @author homologa
+ * @version $Id: $Id
  */
 public class Keys {
 	private static final Logger LOG = LoggerFactory.getLogger(Keys.class);
@@ -22,6 +23,9 @@ public class Keys {
 	private PublicKey publicKey;
 	private PrivateKey privateKey;
 	
+	/**
+	 * <p>generate.</p>
+	 */
 	public void generate() {
 		try {
 			SecureRandom rnd = SecureRandom.getInstance("SHA1PRNG");
@@ -42,6 +46,8 @@ public class Keys {
 	}
 
 	/**
+	 * <p>Getter for the field <code>publicKey</code>.</p>
+	 *
 	 * @return the publicKey
 	 */
 	public PublicKey getPublicKey() {
@@ -49,6 +55,8 @@ public class Keys {
 	}
 
 	/**
+	 * <p>Getter for the field <code>privateKey</code>.</p>
+	 *
 	 * @return the privateKey
 	 */
 	public PrivateKey getPrivateKey() {

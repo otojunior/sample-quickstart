@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Application Main Class.
+ *
  * @author [Author name]
+ * @version $Id: $Id
  */
 public class App {
 	/**
@@ -20,8 +22,9 @@ public class App {
 	
 	/**
 	 * Application main method.
+	 *
 	 * @param args Command line arguments.
-	 * @throws NoSuchAlgorithmException 
+	 * @throws java.security.NoSuchAlgorithmException if any.
 	 */
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		LOG.info("sample-quickstart Application.");

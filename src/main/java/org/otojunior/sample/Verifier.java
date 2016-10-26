@@ -14,8 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Oto Junior
+ * <p>Verifier class.</p>
  *
+ * @author Oto Junior
+ * @version $Id: $Id
  */
 public class Verifier {
 	private static final Logger LOG = LoggerFactory.getLogger(Verifier.class);
@@ -25,6 +27,9 @@ public class Verifier {
 	
 	/**
 	 * Default constructor.
+	 *
+	 * @param signatureAlgorithm a {@link java.lang.String} object.
+	 * @param hashAlgorithm a {@link java.lang.String} object.
 	 */
 	public Verifier(String signatureAlgorithm, String hashAlgorithm) {
 		this.signatureAlgorithm = signatureAlgorithm;
@@ -32,7 +37,12 @@ public class Verifier {
 	}
 	
 	/**
-	 * 
+	 * <p>verify.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 * @param publicKey a {@link java.security.PublicKey} object.
+	 * @param sign an array of byte.
+	 * @return a boolean.
 	 */
 	public boolean verify(String message, PublicKey publicKey, byte[] sign) {
 		boolean authentic = false; 
@@ -48,7 +58,12 @@ public class Verifier {
 	}
 	
 	/**
-	 * 
+	 * <p>verifyWithHash.</p>
+	 *
+	 * @param message a {@link java.lang.String} object.
+	 * @param publicKey a {@link java.security.PublicKey} object.
+	 * @param sign an array of byte.
+	 * @return a boolean.
 	 */
 	public boolean verifyWithHash(String message, PublicKey publicKey, byte[] sign) {
 		boolean authentic = false;
