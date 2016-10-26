@@ -1,4 +1,4 @@
-package org.otojunior.sample.simetric.block.des;
+package org.otojunior.sample.simetric.application;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -8,6 +8,7 @@ import javax.crypto.SecretKey;
 
 import org.apache.commons.codec.binary.Hex;
 import org.otojunior.sample.simetric.block.BlockCipher;
+import org.otojunior.sample.simetric.keys.SecretKeyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,11 +18,11 @@ import org.slf4j.LoggerFactory;
  * @author [Author name]
  * @version $Id: $Id
  */
-public class DESTestApp {
+public class TestAppDES {
 	/**
 	 * SLF4J Logger.
 	 */
-	private static final Logger LOG = LoggerFactory.getLogger(DESTestApp.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TestAppDES.class);
 	
 	private static final String KEYGEN_ALGORITHM = "DES";
 	private static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
@@ -44,7 +45,7 @@ public class DESTestApp {
 				+ "enfrentar situações atípicas decorrentes do fluxo de informações.";
 		byte[] original = message.getBytes();
 		
-		SecretKey key = DESSecretKeyFactory.generate(KEYGEN_ALGORITHM);
+		SecretKey key = SecretKeyFactory.generate(KEYGEN_ALGORITHM, 56);
 		
 		BlockCipher cipher = new BlockCipher(CIPHER_ALGORITHM);
 		byte[] encrypted = cipher.process(original, key, Cipher.ENCRYPT_MODE);
