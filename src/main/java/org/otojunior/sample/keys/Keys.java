@@ -1,4 +1,4 @@
-package org.otojunior.sample;
+package org.otojunior.sample.keys;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -20,9 +20,18 @@ import org.slf4j.LoggerFactory;
 public class Keys {
 	private static final Logger LOG = LoggerFactory.getLogger(Keys.class);
 	
+	private String algorithm;
 	private PublicKey publicKey;
 	private PrivateKey privateKey;
 	
+	/**
+	 * 
+	 * @param keygenAlgorithm
+	 */
+	public Keys(String keygenAlgorithm) {
+		this.algorithm = keygenAlgorithm;
+	}
+
 	/**
 	 * <p>generate.</p>
 	 */
@@ -31,15 +40,23 @@ public class Keys {
 			SecureRandom rnd = SecureRandom.getInstance("SHA1PRNG");
 			
 			// Key Pair generator.
-			KeyPairGenerator generator = KeyPairGenerator.getInstance("DSA");
+			KeyPairGenerator generator = KeyPairGenerator.getInstance(algorithm);
 			generator.initialize(512, rnd);
 			KeyPair keys = generator.generateKeyPair();
 			
 			publicKey = keys.getPublic();
 			privateKey = keys.getPrivate();
 			
-			LOG.info("Public Key: " + publicKey.getFormat() + " " + Hex.encodeHexString(publicKey.getEncoded()));
-			LOG.info("Private Key: " + privateKey.getFormat() + " " + Hex.encodeHexString(privateKey.getEncoded()));
+			LOG.info("Public Key: " + 
+				publicKey.getEncoded().length + " " + 
+				publicKey.getFormat() + " " + 
+				Hex.encodeHexString(publicKey.getEncoded()));
+			
+			LOG.info("Private Key: " + 
+				privateKey.getEncoded().length + " " + 
+				privateKey.getFormat() + " " + 
+				Hex.encodeHexString(privateKey.getEncoded()));
+			
 		} catch (NoSuchAlgorithmException e) {
 			LOG.error(e.getMessage(), e);
 		}

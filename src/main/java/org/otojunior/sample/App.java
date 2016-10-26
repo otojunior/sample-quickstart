@@ -2,6 +2,9 @@ package org.otojunior.sample;
 
 import java.security.NoSuchAlgorithmException;
 
+import org.otojunior.sample.keys.Keys;
+import org.otojunior.sample.process.Signer;
+import org.otojunior.sample.process.Verifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +20,8 @@ public class App {
 	 */
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 	
-	private static final String SIGNATURE_ALGORITHM = "DSA";
-	private static final String HASH_ALGORITHM = "MD5";
+	private static final String KEYGEN_ALGORITHM = "DSA";
+	private static final String SIGNATURE_ALGORITHM = "SHA256withDSA";
 	
 	/**
 	 * Application main method.
@@ -37,18 +40,16 @@ public class App {
 				+ "de como o surgimento do comércio virtual prepara-nos para "
 				+ "enfrentar situações atípicas decorrentes do fluxo de informações.";
 		
-		Keys keys = new Keys();
+		Keys keys = new Keys(KEYGEN_ALGORITHM);
 		keys.generate();
 		
-		Signer signer = new Signer(SIGNATURE_ALGORITHM, HASH_ALGORITHM);
-		byte[] sign 	=	signer.sign(message, keys.getPrivateKey());
-		byte[] signHash = 	signer.signWithHash(message, keys.getPrivateKey());
+		Signer signer = new Signer(SIGNATURE_ALGORITHM);
+		byte[] sign = signer.sign(message, keys.getPrivateKey());
 		
-		Verifier verifier = new Verifier(SIGNATURE_ALGORITHM, HASH_ALGORITHM);
-		boolean auth 		= 	verifier.verify(message, keys.getPublicKey(), sign);
-		boolean authHash 	= 	verifier.verifyWithHash(message, keys.getPublicKey(), signHash);
+		Verifier verifier = new Verifier(SIGNATURE_ALGORITHM);
+		boolean auth = verifier.verify(message, keys.getPublicKey(), sign);
 		
 		LOG.info("Authentic? " + auth);
-		LOG.info("Authentic with hash? " + authHash);
+		
 	}
 }
