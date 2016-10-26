@@ -1,4 +1,4 @@
-package org.otojunior.sample.simetric.keys;
+package org.otojunior.sample.simetric.block.des;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
  * @author Oto Junior
  * @version $Id: $Id
  */
-public class SecretKeyFactory {
-	private static final Logger LOG = LoggerFactory.getLogger(SecretKeyFactory.class);
+public class DESSecretKeyFactory {
+	private static final Logger LOG = LoggerFactory.getLogger(DESSecretKeyFactory.class);
 	
 	/**
 	 * 
@@ -27,7 +27,9 @@ public class SecretKeyFactory {
 		try {
 			SecureRandom rnd = SecureRandom.getInstance("SHA1PRNG");
 			
-			// Key generator.
+			/*
+			 * Key Generation.
+			 */
 			KeyGenerator generator = KeyGenerator.getInstance(algorithm);
 			generator.init(56, rnd);
 			key = generator.generateKey();

@@ -1,11 +1,13 @@
 package org.otojunior.sample.simetric.block.des;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
+import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import org.apache.commons.codec.binary.Hex;
-import org.otojunior.sample.simetric.keys.SecretKeyFactory;
+import org.otojunior.sample.simetric.block.BlockCipher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,11 +17,11 @@ import org.slf4j.LoggerFactory;
  * @author [Author name]
  * @version $Id: $Id
  */
-public class DESTestMainApp {
+public class DESTestApp {
 	/**
 	 * SLF4J Logger.
 	 */
-	private static final Logger LOG = LoggerFactory.getLogger(DESTestMainApp.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DESTestApp.class);
 	
 	private static final String KEYGEN_ALGORITHM = "DES";
 	private static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
@@ -40,19 +42,20 @@ public class DESTestMainApp {
 				+ "esperado a longo prazo. Ainda assim, existem dúvidas a respeito "
 				+ "de como o surgimento do comércio virtual prepara-nos para "
 				+ "enfrentar situações atípicas decorrentes do fluxo de informações.";
+		byte[] original = message.getBytes();
 		
-		SecretKey key = SecretKeyFactory.generate(KEYGEN_ALGORITHM);
+		SecretKey key = DESSecretKeyFactory.generate(KEYGEN_ALGORITHM);
 		
-		DESCipher cipher = new DESCipher(CIPHER_ALGORITHM);
-		byte[] encrypted = cipher.encrypt(message, key);
+		BlockCipher cipher = new BlockCipher(CIPHER_ALGORITHM);
+		byte[] encrypted = cipher.process(original, key, Cipher.ENCRYPT_MODE);
 		
-		LOG.info("Message: " + message.length() + " " + Hex.encodeHexString(message.getBytes()));
+		LOG.info("Message: " + original.length + " " + Hex.encodeHexString(original));
 		LOG.info("Encypted: " + encrypted.length + " " + Hex.encodeHexString(encrypted));
 		
-		cipher = new DESCipher(CIPHER_ALGORITHM);
-		String decrypted = cipher.decrypt(encrypted, key);
+		cipher = new BlockCipher(CIPHER_ALGORITHM);
+		byte[] decrypted = cipher.process(encrypted, key, Cipher.DECRYPT_MODE);
 		
-		LOG.info("Decrypted: " + decrypted.length() + " " + Hex.encodeHexString(decrypted.getBytes()));
-		LOG.info("Original equals Decrypted? " + message.equals(decrypted));
+		LOG.info("Decrypted: " + decrypted.length + " " + Hex.encodeHexString(decrypted));
+		LOG.info("Original equals Decrypted? " + Arrays.equals(original, decrypted));
 	}
 }
