@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.sample.simetric.block;
+package org.otojunior.sample.simetric;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

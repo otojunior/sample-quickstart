@@ -1,10 +1,11 @@
-package org.otojunior.sample.simetric.keys;
+package org.otojunior.sample.simetric;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
@@ -39,6 +40,27 @@ public class SecretKeyFactory {
 				key.getFormat() + " " + 
 				Hex.encodeHexString(key.getEncoded()));
 		} catch (NoSuchAlgorithmException e) {
+			LOG.error(e.getMessage(), e);
+		}
+		return key;
+	}
+	
+	/**
+	 * 
+	 * @param algorithm
+	 * @param specifiedKey provider-independent key
+	 * @return
+	 */
+	public static SecretKey generate(String algorithm, byte[] specifiedKey) {
+		SecretKey key = null;
+		try {
+			key = new SecretKeySpec(specifiedKey, algorithm);
+			
+			LOG.info("Secret Key: " + 
+				key.getEncoded().length + " " + 
+				key.getFormat() + " " + 
+				Hex.encodeHexString(key.getEncoded()));
+		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}
 		return key;
