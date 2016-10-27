@@ -4,8 +4,10 @@
 package org.otojunior.sample;
 
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +19,18 @@ import org.slf4j.LoggerFactory;
 public class BlockCipher {
 	private static final Logger LOG = LoggerFactory.getLogger(BlockCipher.class);
 	
-	private String algorithm;
+	private Cipher cipher;
 	
 	/**
 	 * 
 	 * @param algorithm
 	 */
 	public BlockCipher(String algorithm) {
-		this.algorithm = algorithm;
+		try {
+			this.cipher = Cipher.getInstance(algorithm);
+		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+			LOG.error(e.getMessage(), e);
+		} 
 	}
 	
 	/**
@@ -37,8 +43,7 @@ public class BlockCipher {
 	public byte[] process(byte[] message, Key key, int mode) {
 		byte[] processed = null;
 		try {
-			Cipher cipher = Cipher.getInstance(algorithm);
-			cipher.init(mode, key);
+			this.cipher.init(mode, key);
 			processed = cipher.doFinal(message);
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
