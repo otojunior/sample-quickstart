@@ -7,7 +7,8 @@ import java.util.Arrays;
 import javax.crypto.Cipher;
 
 import org.apache.commons.codec.binary.Hex;
-import org.otojunior.sample.block.BlockCipher;
+import org.otojunior.sample.BlockCipher;
+import org.otojunior.sample.KeyPairFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

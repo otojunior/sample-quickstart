@@ -1,4 +1,4 @@
-package org.otojunior.sample.block.asymmetric;
+package org.otojunior.sample;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -33,15 +33,17 @@ public class KeyPairFactory {
 			generator.initialize(keysize, rnd);
 			keys = generator.generateKeyPair();
 			
-			LOG.info("Private Key: " + 
-				keys.getPrivate().getEncoded().length + " " + 
-				keys.getPrivate().getFormat() + " " + 
-				Hex.encodeHexString(keys.getPrivate().getEncoded()));
-			
-			LOG.info("Private Key: " + 
-				keys.getPublic().getEncoded().length + " " + 
-				keys.getPublic().getFormat() + " " + 
-				Hex.encodeHexString(keys.getPublic().getEncoded()));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("Private Key: " + 
+					keys.getPrivate().getEncoded().length + " " + 
+					keys.getPrivate().getFormat() + " " + 
+					Hex.encodeHexString(keys.getPrivate().getEncoded()));
+				
+				LOG.debug("Private Key: " + 
+					keys.getPublic().getEncoded().length + " " + 
+					keys.getPublic().getFormat() + " " + 
+					Hex.encodeHexString(keys.getPublic().getEncoded()));
+			}
 		} catch (NoSuchAlgorithmException e) {
 			LOG.error(e.getMessage(), e);
 		}

@@ -1,4 +1,4 @@
-package org.otojunior.sample.block.symmetrical;
+package org.otojunior.sample;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -35,10 +35,12 @@ public class SecretKeyFactory {
 			generator.init(keysize, rnd);
 			key = generator.generateKey();
 			
-			LOG.info("Secret Key: " + 
-				key.getEncoded().length + " " + 
-				key.getFormat() + " " + 
-				Hex.encodeHexString(key.getEncoded()));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("Secret Key: " + 
+					key.getEncoded().length + " " + 
+					key.getFormat() + " " + 
+					Hex.encodeHexString(key.getEncoded()));
+			}
 		} catch (NoSuchAlgorithmException e) {
 			LOG.error(e.getMessage(), e);
 		}
@@ -56,10 +58,12 @@ public class SecretKeyFactory {
 		try {
 			key = new SecretKeySpec(specifiedKey, algorithm);
 			
-			LOG.info("Secret Key: " + 
-				key.getEncoded().length + " " + 
-				key.getFormat() + " " + 
-				Hex.encodeHexString(key.getEncoded()));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("Secret Key: " + 
+					key.getEncoded().length + " " + 
+					key.getFormat() + " " + 
+					Hex.encodeHexString(key.getEncoded()));
+			}
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}

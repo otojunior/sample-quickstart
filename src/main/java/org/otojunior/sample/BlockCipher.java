@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.sample.block;
+package org.otojunior.sample;
 
 import java.security.Key;
 
