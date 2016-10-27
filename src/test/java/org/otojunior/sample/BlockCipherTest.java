@@ -6,6 +6,7 @@ package org.otojunior.sample;
 import static org.junit.Assert.assertTrue;
 
 import java.security.Key;
+import java.security.KeyPair;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
@@ -43,7 +44,7 @@ public class BlockCipherTest {
 		
 		Key key = SecretKeyFactory.generate(keygenAlgorithm, keySize);
 		BlockCipher cipher = new BlockCipher(cipherAlgorithm);
-		test(key, cipher);
+		testSymmetrical(key, cipher);
 	}
 	
 	/**
@@ -57,7 +58,7 @@ public class BlockCipherTest {
 		
 		Key key = SecretKeyFactory.generate(keygenAlgorithm, keySize);
 		BlockCipher cipher = new BlockCipher(cipherAlgorithm);
-		test(key, cipher);
+		testSymmetrical(key, cipher);
 	}
 	
 	/**
@@ -71,7 +72,31 @@ public class BlockCipherTest {
 		
 		Key key = SecretKeyFactory.generate(keygenAlgorithm, specifiedPassword.getBytes());
 		BlockCipher cipher = new BlockCipher(cipherAlgorithm);
-		test(key, cipher);
+		testSymmetrical(key, cipher);
+	}
+	
+	/**
+	 * Test method for {@link org.otojunior.sample.BlockCipher#process(byte[], java.security.Key, int)}.
+	 */
+	@Test
+	public final void testAsymmetricRSA() {
+		int keySize = 4096;
+		String keygenAlgorithm = "RSA";
+		String cipherAlgorithm = "RSA/ECB/PKCS1Padding";
+		
+		KeyPair keys = KeyPairFactory.generate(keygenAlgorithm, keySize);
+		BlockCipher cipher = new BlockCipher(cipherAlgorithm);
+		
+		byte[] encrypted = cipher.process(ORIGINAL_MESSAGE, keys.getPublic(), Cipher.ENCRYPT_MODE);
+		byte[] decrypted = cipher.process(encrypted, keys.getPrivate(), Cipher.DECRYPT_MODE);
+
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Message: " + ORIGINAL_MESSAGE.length + " " + Hex.encodeHexString(ORIGINAL_MESSAGE));
+			LOG.debug("Encypted: " + encrypted.length + " " + Hex.encodeHexString(encrypted));
+			LOG.debug("Decrypted: " + decrypted.length + " " + Hex.encodeHexString(decrypted));
+		}
+		
+		assertTrue(Arrays.equals(ORIGINAL_MESSAGE, decrypted));
 	}
 	
 	/**
@@ -81,7 +106,7 @@ public class BlockCipherTest {
 	 * @param cipherAlgorithm
 	 * @return
 	 */
-	private void test(Key key, BlockCipher cipher) {
+	private void testSymmetrical(Key key, BlockCipher cipher) {
 		byte[] encrypted = cipher.process(ORIGINAL_MESSAGE, key, Cipher.ENCRYPT_MODE);
 		byte[] decrypted = cipher.process(encrypted, key, Cipher.DECRYPT_MODE);
 		
