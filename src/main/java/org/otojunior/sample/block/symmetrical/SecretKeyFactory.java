@@ -1,4 +1,4 @@
-package org.otojunior.sample.simetric;
+package org.otojunior.sample.block.symmetrical;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

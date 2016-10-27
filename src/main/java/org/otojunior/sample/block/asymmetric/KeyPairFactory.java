@@ -1,4 +1,4 @@
-package org.otojunior.sample.asimetric;
+package org.otojunior.sample.block.asymmetric;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

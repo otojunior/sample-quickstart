@@ -1,4 +1,4 @@
-package org.otojunior.sample.simetric;
+package org.otojunior.sample.block.symmetrical;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import org.apache.commons.codec.binary.Hex;
+import org.otojunior.sample.block.BlockCipher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

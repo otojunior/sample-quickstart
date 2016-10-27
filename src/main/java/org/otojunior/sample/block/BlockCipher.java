@@ -1,10 +1,11 @@
 /**
  * 
  */
-package org.otojunior.sample.simetric;
+package org.otojunior.sample.block;
+
+import java.security.Key;
 
 import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class BlockCipher {
 	 * @param mode
 	 * @return
 	 */
-	public byte[] process(byte[] message, SecretKey key, int mode) {
+	public byte[] process(byte[] message, Key key, int mode) {
 		byte[] processed = null;
 		try {
 			Cipher cipher = Cipher.getInstance(algorithm);
