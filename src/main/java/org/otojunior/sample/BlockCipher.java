@@ -3,10 +3,13 @@
  */
 package org.otojunior.sample;
 
+import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import org.slf4j.Logger;
@@ -45,7 +48,7 @@ public class BlockCipher {
 		try {
 			this.cipher.init(mode, key);
 			processed = cipher.doFinal(message);
-		} catch (Exception e) {
+		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
 			LOG.error(e.getMessage(), e);
 		}
 		return processed;
