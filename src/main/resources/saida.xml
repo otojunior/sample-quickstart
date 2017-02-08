@@ -1,0 +1,16 @@
+<configuration>
+  <nome>poc</nome>
+  <jobs>15</jobs>
+  <host>host_ex1</host>
+  <host>host_ex2</host>
+  <server>
+    <ip>192.168.0.1</ip>
+    <ip>192.168.0.2</ip>
+    <ip>192.168.0.3</ip>
+  </server>
+  <server>
+    <ip>192.168.0.4</ip>
+    <ip>192.168.0.5</ip>
+    <ip>192.168.0.6</ip>
+  </server>
+</configuration>

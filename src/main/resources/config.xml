@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+	<nome>pocmanjarl</nome>
+	<jobs>10</jobs>
+	<host>host_exemplo_1</host>
+	<host>host_exemplo_2</host>
+	<server node="1">
+		<ip>192.168.0.1</ip>
+		<ip>192.168.0.2</ip>
+		<ip>192.168.0.3</ip>
+	</server>
+	<server node="2">
+		<ip>192.168.0.4</ip>
+		<ip>192.168.0.5</ip>
+		<ip>192.168.0.6</ip>
+	</server>
+</configuration>

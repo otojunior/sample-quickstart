@@ -74,6 +74,21 @@
 		    <version>${dependency.version.commons-collections4}</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-configuration2</artifactId>
+		    <version>2.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils</artifactId>
+		    <version>1.9.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.thoughtworks.xstream</groupId>
+		    <artifactId>xstream</artifactId>
+		    <version>1.4.9</version>
+		</dependency>
+		<dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-api</artifactId>
 		    <version>${dependency.version.slf4j}</version>
