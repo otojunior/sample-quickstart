@@ -19,6 +19,15 @@ public class SampleServer implements Runnable {
 	public void run() {
 		final String ADDRESS = "http://localhost:9000/calculadoraws";
 		final Calculadora IMPLEMENTACAO = new Calculadora();
+		
+		System.out.println("Server iniciado...");
 		Endpoint.publish(ADDRESS, IMPLEMENTACAO);
+		try {
+			Thread.sleep(/*5 * 60 * 1000*/ 5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Server terminada...");
+        System.exit(0);
 	}
 }
