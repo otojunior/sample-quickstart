@@ -30,7 +30,7 @@ public class AplicacaoCorreios {
 		
 		try {
 			consultarCEP(port);
-			consultarSRO(port);
+			//consultarSRO(port);
 		} catch (SQLException_Exception | SigepClienteException e) {
 			e.printStackTrace();
 		}
@@ -41,6 +41,7 @@ public class AplicacaoCorreios {
 	 * @throws SigepClienteException
 	 * @throws ParserConfigurationException 
 	 */
+	@SuppressWarnings("unused")
 	private static void consultarSRO(AtendeCliente port) throws Exception {
 		List<String> lst = Arrays.asList(
 			"DU511327170BR", 

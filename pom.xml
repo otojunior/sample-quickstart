@@ -77,47 +77,15 @@
 		</dependency>
 		<dependency>
 		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-api</artifactId>
+		    <artifactId>slf4j-simple</artifactId>
 		    <version>${dependency.version.slf4j}</version>
 		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${dependency.version.logback}</version>
-		</dependency>
-		<dependency>
-		    <groupId>c3p0</groupId>
-		    <artifactId>c3p0</artifactId>
-		    <version>${dependency.version.c3p0}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.fusesource.jansi</groupId>
-		    <artifactId>jansi</artifactId>
-		    <version>${dependency.version.jansi}</version>
-		</dependency>
+
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		    <version>${dependency.version.junit}</version>
 		    <scope>test</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.easymock</groupId>
-		    <artifactId>easymock</artifactId>
-		    <version>${dependency.version.easymock}</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
-			<version>${dependency.version.powermock}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-easymock</artifactId>
-			<version>${dependency.version.powermock}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -170,9 +138,8 @@
 				<version>${plugin.version.maven-source-plugin}</version>
 				<executions>
 					<execution>
-						<id>attach-sources</id>
 						<goals>
-							<goal>jar</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -184,7 +151,6 @@
 				<version>${plugin.version.maven-javadoc-plugin}</version>
 				<executions>
 					<execution>
-						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -197,23 +163,11 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${plugin.version.maven-surefire-plugin}</version>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>${plugin.version.maven-release-plugin}</version>
 				<configuration>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
 				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.codehaus.sonar</groupId>
-			    <artifactId>sonar-maven3-plugin</artifactId>
-			    <version>${plugin.version.sonar-maven3-plugin}</version>
 			</plugin>
 			
 			<plugin>
