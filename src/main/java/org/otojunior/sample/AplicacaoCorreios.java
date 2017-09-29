@@ -22,7 +22,7 @@ public class AplicacaoCorreios {
 	 * <p>main.</p>
 	 *
 	 * @param args an array of {@link java.lang.String} objects.
-	 * @throws ParserConfigurationException 
+	 * @throws Exception General exceptions thrown. 
 	 */
 	public static void main(String[] args) throws Exception {
 		AtendeClienteService service = new AtendeClienteService();
