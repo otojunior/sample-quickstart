@@ -1,15 +1,10 @@
 package org.otojunior.sample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.otojunior.sample.soap.AtendeCliente;
-import org.otojunior.sample.soap.AtendeClienteService;
-import org.otojunior.sample.soap.EnderecoERP;
-import org.otojunior.sample.soap.SQLException_Exception;
-import org.otojunior.sample.soap.SigepClienteException;
+import br.com.correios.bsb.sigep.master.bean.cliente.AtendeCliente;
+import br.com.correios.bsb.sigep.master.bean.cliente.AtendeClienteService;
+import br.com.correios.bsb.sigep.master.bean.cliente.EnderecoERP;
+import br.com.correios.bsb.sigep.master.bean.cliente.SQLException_Exception;
+import br.com.correios.bsb.sigep.master.bean.cliente.SigepClienteException;
 
 /**
  * <p>AplicacaoCorreios class.</p>
@@ -25,6 +20,7 @@ public class AplicacaoCorreios {
 	 * @throws Exception General exceptions thrown. 
 	 */
 	public static void main(String[] args) throws Exception {
+		
 		AtendeClienteService service = new AtendeClienteService();
 		AtendeCliente port = service.getAtendeClientePort();
 		
@@ -41,7 +37,7 @@ public class AplicacaoCorreios {
 	 * @throws SigepClienteException
 	 * @throws ParserConfigurationException 
 	 */
-	@SuppressWarnings("unused")
+	/*@SuppressWarnings("unused")
 	private static void consultarSRO(AtendeCliente port) throws Exception {
 		List<String> lst = Arrays.asList(
 			"DU511327170BR", 
@@ -49,7 +45,7 @@ public class AplicacaoCorreios {
 			"DM788604881BR");		
 		String sro = port.consultaSRO(lst, "L", "T", "ECT", "SRO");
 		System.out.println(sro);
-	}
+	}*/
 
 	/**
 	 * @param port
