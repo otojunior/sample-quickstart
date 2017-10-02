@@ -175,23 +175,33 @@
 				</configuration>
 			</plugin>
 			
+			<!-- 
+				Se houver Exceptions na execução do plugin com o Java 8, tentar a seguinte solução:
+				Criar um arquivo 'jaxp.properties' sob o diretório <jdk8>/jre/lib com o conteúdo:
+				javax.xml.accessExternalSchema = all
+			-->
 			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>exec-maven-plugin</artifactId>
-			    <version>1.6.0</version>
-			    <executions>
-			    	<execution>
-			    		<phase>compile</phase>
-			    		<goals>
-			    			<goal>java</goal>
-			    		</goals>
-			    	</execution>
-			    </executions>
-			    <configuration>
-			    	<mainClass>org.otojunior.sample.cxf.server.SampleServer</mainClass>
-			    </configuration>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<uri>http://localhost:9000/calculadoraws?wsdl</uri>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-			
 		</plugins>
 	</build>
 </project>
