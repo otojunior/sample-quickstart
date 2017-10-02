@@ -22,12 +22,22 @@ public class SampleServer implements Runnable {
 		
 		System.out.println("Server iniciado...");
 		Endpoint.publish(ADDRESS, IMPLEMENTACAO);
+		
 		try {
-			Thread.sleep(/*5 * 60 * 1000*/ 5000);
+			Thread.sleep(5 * 60 * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Server terminada...");
+		
+		System.out.println("Server terminado...");
         System.exit(0);
+	}
+	
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new Thread(new SampleServer()).start();
 	}
 }

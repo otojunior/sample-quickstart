@@ -10,7 +10,7 @@ import javax.jws.WebService;
  * @author 01456231650
  *
  */
-@WebService
+@WebService()
 public class Calculadora implements ICalculadora {
 
 	/* (non-Javadoc)

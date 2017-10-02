@@ -174,57 +174,6 @@
 					<timestampFormat>{0,date,dd/MM/yyyy HH:mm:ss}</timestampFormat>
 				</configuration>
 			</plugin>
-			
-			<!-- 
-				Se houver Exceptions na execução do plugin com o Java 8, tentar a seguinte solução:
-				Criar um arquivo 'jaxp.properties' sob o diretório <jdk8>/jre/lib com o conteúdo:
-				javax.xml.accessExternalSchema = all
-			 -->
-			
-			<!-- 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-			    <artifactId>jaxws-maven-plugin</artifactId>
-			    <version>${plugin.version.jaxws-maven-plugin}</version>
-			    <executions>
-	                <execution>
-	                    <goals>
-	                        <goal>wsimport</goal>
-	                    </goals>
-	                </execution>
-	           </executions>
-			    <configuration>
-			    	<packageName>${configuration.package.jaxwsimport}</packageName>
-					<wsdlUrls>
-					    <wsdlUrl>https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl</wsdlUrl>
-					</wsdlUrls>
-					<verbose>true</verbose>
-			    </configuration>
-			</plugin>
-			 -->
-			
-			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>3.2.0</version>
-				<executions>
-					<execution>
-						<id>generate-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
-							<wsdlOptions>
-								<wsdlOption>
-									<uri>https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl</uri>
-								</wsdlOption>
-							</wsdlOptions>
-						</configuration>
-						<goals>
-							<goal>wsdl2java</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 </project>
