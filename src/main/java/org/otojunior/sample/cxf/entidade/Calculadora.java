@@ -12,6 +12,7 @@ import javax.jws.WebService;
  */
 @WebService()
 public class Calculadora implements ICalculadora {
+	private static final long serialVersionUID = 1L;
 
 	/* (non-Javadoc)
 	 * @see org.otojunior.sample.cxf.entidade.ICalculadora#somar(java.lang.Integer, java.lang.Integer)
