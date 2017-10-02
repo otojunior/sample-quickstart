@@ -11,7 +11,12 @@ import javax.jws.WebService;
  * @author 01456231650
  *
  */
-@WebService
+
+/*
+ * Por padrão da anotação @WebService, o nome do serviço criado será "Classe + Service" e
+ * o nome do port será "Classe + Port"
+ */
+@WebService // vide comentário acima
 public class Calculadora implements ICalculadora {
 	private static final long serialVersionUID = 1L;
 
