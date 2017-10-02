@@ -13,6 +13,10 @@ import org.slf4j.LoggerFactory;
 public class SampleClientStubs {
 	private static final Logger LOG = LoggerFactory.getLogger(SampleClientStubs.class);
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		CalculadoraService service = new CalculadoraService();
 		Calculadora proxy = service.getCalculadoraPort();

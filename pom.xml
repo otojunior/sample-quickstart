@@ -66,6 +66,11 @@
 		    <artifactId>slf4j-simple</artifactId>
 		    <version>${dependency.version.slf4j}</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>apache-cxf</artifactId>
+		    <version>3.2.0</version>
+		</dependency>
 
 		<dependency>
 		    <groupId>junit</groupId>
