@@ -63,6 +63,7 @@ public class Calculadora implements ICalculadora {
 	 * automaticamente.
 	 */
 	@Override
+	@WebMethod(exclude=true)
 	public Double dividir(Integer numero1, Integer numero2) {
 		double double1 = numero1.doubleValue();
 		double double2 = numero2.doubleValue();
