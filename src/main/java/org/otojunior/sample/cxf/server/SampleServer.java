@@ -6,12 +6,17 @@ package org.otojunior.sample.cxf.server;
 import javax.xml.ws.Endpoint;
 
 import org.otojunior.sample.cxf.entidade.Calculadora;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author 01456231650
  *
  */
 public class SampleServer implements Runnable {
+	private static final Logger LOG = LoggerFactory.getLogger(SampleServer.class);
+	
 	/**
 	 * {@inheritDoc}  
 	 */
@@ -19,17 +24,17 @@ public class SampleServer implements Runnable {
 	public void run() {
 		final String ADDRESS = "http://localhost:9000/calculadoraws";
 		final Calculadora IMPLEMENTACAO = new Calculadora();
-		
-		System.out.println("Server iniciado...");
+	
+		LOG.info("Servidor iniciado...");
 		Endpoint.publish(ADDRESS, IMPLEMENTACAO);
 		
 		try {
-			Thread.sleep(5 * 60 * 1000);
+			Thread.sleep(1 * 60 * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Server terminado...");
+		LOG.info("Servidor terminado...");
         System.exit(0);
 	}
 	

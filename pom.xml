@@ -78,36 +78,24 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>${plugin.version.maven-jar-plugin}</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>${plugin.version.buildnumber-maven-plugin}</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-							<mainClass>org.otojunior.sample.AplicacaoCorreios</mainClass>
-						</manifest>
-						<manifestEntries>
-							<Implementation-Build>${buildNumber}</Implementation-Build>
-							<Implementation-Branch>${scmBranch}</Implementation-Branch>
-							<Implementation-Date>${timestamp}</Implementation-Date>
-						</manifestEntries>
-					</archive>
+					<revisionOnScmFailure>true</revisionOnScmFailure>
+					<shortRevisionLength>8</shortRevisionLength>
+					<timestampFormat>{0,date,dd/MM/yyyy HH:mm:ss}</timestampFormat>
 				</configuration>
 			</plugin>
-			
-			<!-- Executable JAR creation: mvn clean package shade:shade -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>${plugin.version.maven-shade-plugin}</version>
-				<configuration>
-					<minimizeJar>false</minimizeJar>
-				</configuration>
-			</plugin>
-
+		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -146,6 +134,37 @@
 					<excludePackageNames>${configuration.package.jaxwsimport}</excludePackageNames>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${plugin.version.maven-jar-plugin}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<mainClass>org.otojunior.sample.AplicacaoCorreios</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+							<Implementation-Branch>${scmBranch}</Implementation-Branch>
+							<Implementation-Date>${timestamp}</Implementation-Date>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<!-- Executable JAR creation: mvn clean package shade:shade -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>${plugin.version.maven-shade-plugin}</version>
+				<configuration>
+					<minimizeJar>false</minimizeJar>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -157,23 +176,22 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>buildnumber-maven-plugin</artifactId>
-				<version>${plugin.version.buildnumber-maven-plugin}</version>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>create</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<revisionOnScmFailure>true</revisionOnScmFailure>
-					<shortRevisionLength>8</shortRevisionLength>
-					<timestampFormat>{0,date,dd/MM/yyyy HH:mm:ss}</timestampFormat>
-				</configuration>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>exec-maven-plugin</artifactId>
+			    <version>1.6.0</version>
+			    <executions>
+			    	<execution>
+			    		<phase>compile</phase>
+			    		<goals>
+			    			<goal>java</goal>
+			    		</goals>
+			    	</execution>
+			    </executions>
+			    <configuration>
+			    	<mainClass>org.otojunior.sample.cxf.server.SampleServer</mainClass>
+			    </configuration>
 			</plugin>
+			
 		</plugins>
 	</build>
 </project>
