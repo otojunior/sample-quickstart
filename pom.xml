@@ -22,11 +22,13 @@
 		<dependency.version.commons-collections4>4.1</dependency.version.commons-collections4>
 		<dependency.version.slf4j>1.7.25</dependency.version.slf4j>
 		<dependency.version.junit>4.12</dependency.version.junit>
+		<dependency.version.mockito>2.11.0</dependency.version.mockito>
+		<dependency.version.powermock>1.7.3</dependency.version.powermock>
 		<plugin.version.java>1.8</plugin.version.java>
 		<plugin.version.maven-jar-plugin>3.0.2</plugin.version.maven-jar-plugin>
 		<plugin.version.maven-shade-plugin>3.1.0</plugin.version.maven-shade-plugin>
 		<plugin.version.maven-compiler-plugin>3.7.0</plugin.version.maven-compiler-plugin>
-		<plugin.version.maven-source-plugin>3.6.1</plugin.version.maven-source-plugin>
+		<plugin.version.maven-source-plugin>3.0.1</plugin.version.maven-source-plugin>
 		<plugin.version.maven-javadoc-plugin>2.9.1</plugin.version.maven-javadoc-plugin>
 		<plugin.version.maven-release-plugin>2.5.3</plugin.version.maven-release-plugin>
 		<plugin.version.buildnumber-maven-plugin>1.4</plugin.version.buildnumber-maven-plugin>
@@ -73,10 +75,34 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>${dependency.version.junit}</version>
-		    <scope>test</scope>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${dependency.version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${dependency.version.mockito}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-core</artifactId>
+			<version>${dependency.version.powermock}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${dependency.version.powermock}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito2</artifactId>
+			<version>${dependency.version.powermock}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
